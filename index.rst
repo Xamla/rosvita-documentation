@@ -1,35 +1,33 @@
-.. Rosvita documentation master file, created by
-   sphinx-quickstart on Mon Jan 15 15:08:46 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Welcome to ROSVITA
+===================
 
-Welcome to Rosvita's documentation!
-===================================
-
-ROSVITA is an easy-to-use in-browser robot programming environment based on the "Robot Operating System" ROS.
+ROSVITA is an easy-to-use in-browser **robot programming environment** based on the "Robot Operating System" `ROS <http://www.ros.org/>`_.
+ROS is a collection of open-source software libraries and programs for the development of robotic applications. The programming platform ROSVITA has as many degrees of freedom as ROS, but is characterized by its ease of use and the reliability of all integrated ROS components.
 
 
 Why Rosvita?
 ------------
 
-ROSVITA's intuitive user interface and high-quality 3D visualizations allow the user to interact with the robot and the scene in real-time. This enables the user to quickly test a variety of strategies and approaches to plan complex operations, such as sensor-feedback-driven pick-and-place operations. The ease of use and graphical user interface of ROSVITA enables even inexperienced users to train complex robot behavior fast and easily. For more experienced users, an integrated source code editor is available. You can also use your own ROS nodes with the system and start your own experiments.
+ROSVITA's intuitive user interface and **high-quality 3D visualizations** allow the user to interact with the robot and its environment in **real-time**. This enables the user to quickly test a variety of strategies to plan complex operations, such as sensor-feedback-driven pick-and-place operations. The ease of use and especially the graphical user interface of ROSVITA enable even inexperienced users to train complex robot behavior fast and easily. For more experienced users, an **integrated source code editor** is available. Of course, you can also use your own ROS nodes with the system and start your own experiments. The configuration of ROS including the robot motion planner `"MoveIt!" <http://moveit.ros.org/>`_ can be done in just a few minutes. All integrated ROS components run reliably and **can be used industrially** immediately.
+In addition, ROSVITA has a **visual workflow editor with expandable module system**, a **file browser**, a **text editor with shell integration** for expert commands, and **permanent monitoring** of all system components using so-called "heartbeats" (periodically generated signals send from the individual components to the central system).
 
-ROS is a collection of open-source software libraries and programs for the development of robotic applications.
-The programming platform ROSVITA has as many degrees of freedom as ROS, but is characterized by its ease of use and the reliability of all integrated ROS components. The configuration of ROS including the robot motion planner "MoveIt!" can be done in just a few minutes. All integrated ROS components run reliably and can be used industrially immediately.
-
-In addition, ROSVITA has a visual workflow editor with expandable module system, a file system browser, a text editor with shell integration for expert commands, and permanent monitoring of all system components using so-called "heartbeats" (periodically generated signals send from the  individual components to the central system).
-
-The main application area for ROSVITA is the programming of adaptive behavior of robot arms, in particular dual-arm robots and kinematics with more than 6 degrees of freedom. The associated end effectors and sensor heads developed by us are equipped with optical and tactile sensors and allow the robot to "see" and "feel" its environment. Together with the gripper jaw changing system developed by us, ROSVITA enables the use of a single robot cell assembly for a wide range of tasks.
+The main application area for ROSVITA is the programming of adaptive behavior of robot arms, in particular dual-arm robots and kinematics with more than 6 degrees of freedom. The associated end effectors and sensor heads developed by our company (http://xamla.com) are equipped with optical and tactile sensors and allow the robot to "see" and "feel" its environment. Together with our **gripper jaw changing system**, ROSVITA enables the use of a single robot cell assembly for a wide range of tasks.
 
 
-The Docker Image Concept
-------------------------
+Getting Startet
+----------------
 
-To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date Ubuntu operating system, as well as Docker `Docker <https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce>`_ . After downloading the ROSVITA Docker image, you can import it with the following command::
+To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is:
+
+* An up-to-date `Ubuntu <https://help.ubuntu.com/community/Installation/>`_ operating system (16.04 or higher),
+* The software container platform `Docker <https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce>`_,
+* And finally the `ROSVITA Docker image <http://xamla.com/en/#early-access>`_.
+
+After downloading the ROSVITA Docker image ("rosvita_production_container.tar.gz"), you can import it to Docker with the following command::
 
    cat rosvita_production_container.tar.gz | docker import - rosvita-server-prod-flat:v0.1
 
-After that, ROSVITA can be started by executing the following shell script (which in the following will be called rosvita-start.sh)::
+After that, ROSVITA can be started by creating and executing a shell script "rosvita-start.sh" with the following content::
 
    #!/bin/bash
 
@@ -53,18 +51,19 @@ After that, ROSVITA can be started by executing the following shell script (whic
            exit 1
    fi
 
-**Important**: All changes to files on the ROSVITA server are temporary and get lost after an update of the ROSVITA Docker image. Therefore, **you should not modify the ROSVITA Docker image**, but **always make changes locally in your own project folder**. This is also the reason why "RobotParts" are copied into your own project folder when you select them from the library and add them to your project. In this way, your individual changes to the robot model are stored in your local project folder.
+Before executing the script, go into your home folder and create a folder "Rosvita" with two subfolders "data" and "projects"::
 
+   cd /home/<username>/; mkdir Rosvita; cd Rosvita; mkdir data projects
 
-Getting Startet
----------------
+To be able to execute the start script, you probably first have to change permissions with the following command::
 
-After the computer has been set up successfully (including import of the ROSVITA Docker image), ROSVITA can be easily started by calling the start script. To do this, open a terminal and enter the following commands::
+   usermod u+x rosvita-start.sh
 
-   cd /home/rosvita/
+Then execute the start script by simply typing::
+
    ./rosvita-start.sh
 
-Then the following text should appear in the terminal::
+The following text should appear in the terminal::
 
    Check if ROSvita is already running... NO
    Starting ROSvita
@@ -72,15 +71,15 @@ Then the following text should appear in the terminal::
    Ok
    Use 'docker attach rosvita' to attach to the container. Use CTRL+P, CTRL+Q to detach from the container.
 
-In an internet browser (for example in "Chrome" or "Firefox"), the user interface of the "Rosvita Robot Programming System" can now be opened by entering ``localhost: 5000`` in the address bar.
+In an internet browser (for example in "Chrome"), the user interface of the "Rosvita Robot Programming System" can now be opened by entering ``localhost: 5000`` in the address bar.
 The login screen appears. After successful login with username and password, the ROSVITA main development environment opens.
 
+.. note:: All changes to files of the ROSVITA Docker image are temporary and get lost after an update of the image. Therefore, **do not modify the ROSVITA Docker image, but always make changes locally in your own project folder** (/home/<username>/Rosvita/projects/).
 
-Contents:
-=========
 
 .. toctree::
    :maxdepth: 2
+   :caption: User Documentation
 
    Main_View
    New_Project
@@ -94,10 +93,3 @@ Contents:
    Lua_Scripts
    Complex_Scene
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

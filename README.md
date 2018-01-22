@@ -1,8 +1,8 @@
-# rosvita-documentation
-Documentation of the ROSVITA robot programming environment.
+# ROSVITA Documentation
+This is the documentation of the ROSVITA robot programming environment.
 
-Sphinx is a tool that makes it easy to create beautiful documentation. 
-Assuming you have Python already, install Sphinx:
+To build this documentation first install [Sphinx](http://www.sphinx-doc.org/en/stable/). 
+Assuming you have Python already, install Sphinx via the following command:
 
 ``pip install sphinx sphinx-autobuild``
 
@@ -13,4 +13,3 @@ Go into this folder and there, into the folder "html".
 There you'll find a file "index.html". 
 Open this file with e.g. "Chrome" and you'll see the beginning of the ROSVITA documentation and links to all chapters of the current documentation.
 
-This is work in progress!
