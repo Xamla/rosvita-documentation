@@ -1,13 +1,20 @@
 The ROSVITA Code Editor
 ************************
 
-TODO: Translate this text to english!
+Double-clicking on a file in the integrated file browser opens it in the ROSVITA code editor, which offers several helpful features:
 
-* Doppelklick auf eine Datei im integrierten Dateibrowser öffnet diese im ROSVITA Code-Editor.
-* ROSVITA besitzt einen **integrierten .xacro-Kompiler**, so dass beim Öffnen einer .xacro-Datei die Felder "Save" und "Compile" in der oberen Leiste des Editors erscheinen.
-* Mögliche Fehlermeldungen des "Compile"-Vorgangs erscheinen unten in der "Error"-Anzeige der ROSVITA Programmierumgebung. 
-* Bei allen anderen Dateiformaten wird anstelle des "Compile"-Feldes oben in der Leiste der Dateityp angezeigt.
-* Am linken Rand des Code-Editors wird die Zeilenzahl angezeigt, außerdem befindet sich in der unteren Leiste des Code-Editors eine Anzeige der aktuellen Zeile und Spalte, in denen sich der Cursor befindet.
-* Drücken der Taste F1 liefert alle Kommandos und deren Shortcuts, die in dem Code-Editor zur Verfügung stehen. Alternativ erhält man die Kommando-Übersicht durch Rechtsklick in den Code-Editor und Auswahl des Menüpunkts "Command Palette". 
+* First of all, ROSVITA has a **built-in .xacro compiler** so that when you open a .xacro file, buttons "Save" and "Compile" appear in the top bar of the editor. Moreover, to the right of the .xacro editor, a window opens, where you can switch between a 3D view of the corresponding robot configuration and the URDF output of the xacro compilation (see Fig. 7.1). The results of compiling the .xacro file are directly visible in the 3D view and the URDF output. Possible error messages of the compile process appear at the error output at the bottom of the ROSVITA programming environment.
+
+.. figure:: images/Xacro_Editor.png
+
+   Figure 7.1  The ROSVITA xacro editor.
+
+* For all other file formats, the "Compile" button is replaced by a display of the file type at the top bar.
+* The line numbers are displayed on the left edge of the Code Editor. Moreover the bottom bar of the Code Editor also contains a display of the current line and column, in which the cursor is located.
+* Pressing the **F1 key** will return all the commands (like "copy", "find", "replace", ...) and their shortcuts available in the code editor (see Fig. 7.2). Alternatively, the command overview can be obtained by right-clicking in the code editor and selecting the menu item "**Command Palette**".
+
+.. figure:: images/Code_Editor_with_Command_Palette.png
+
+   Figure 7.2  The ROSVITA code editor with open command palette.
 
 
