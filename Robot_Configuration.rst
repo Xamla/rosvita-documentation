@@ -20,7 +20,7 @@ moving the scene in the 3D view, and scrolling the mouse wheel will zoom in or o
 .. note:: A robot configuration always needs at least one "RobotPart" (Xacro/URDF robot description, 3D visualization and collision model), as well as the associated "Actuator" (robot driver).
 
 By clicking on the "Save" button at the top bar of the "Configuration" view, the current configuration is saved 
-in the current project, i.e. some of the files in the project folder created above are now filled with life.
+in the current project, i.e. some of the files in the project folder created before are now filled with life.
 If you previously selected the "UR5" robot arm, in the "robotModel" folder a new folder 
 "part_ur5" will appear. This folder contains the visualization and the collision model of the UR5 robotic arm 
 (".stl" files in the subfolder "collision" and ".dae" files in the subfolder "visual"). 
