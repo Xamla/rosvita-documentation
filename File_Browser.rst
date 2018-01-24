@@ -1,5 +1,6 @@
-The ROSVITA File Browser
-*************************
+**********************
+ROSVITA File Browser
+**********************
 
 The ROSVITA file browser is located on the left edge of the ROSVITA programming environment and offers all the convenience of a typical file browser:
 

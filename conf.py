@@ -49,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Rosvita documentation'
-copyright = u'2018, Inga Altrogge'
+copyright = u'2018, Xamla.com'
 author = u'Inga Altrogge'
 
 # The version info for the project you're documenting, acts as replacement for

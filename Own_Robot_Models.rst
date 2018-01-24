@@ -1,5 +1,6 @@
-Creation and upload of own robot models
-****************************************
+*******************************
+Creation of Own Robot Models
+*******************************
 
 In the ROSVITA file browser under the path ``/home/xamla/Rosvita.Control/library/robot_parts/`` you will find the different robot models (for example ``universal_robots/part_ur5``). These include the following files and folders:
 

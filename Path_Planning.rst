@@ -1,5 +1,6 @@
+******************************
 Path Planning ("World View") 
-*****************************
+******************************
 
 Once the robot configuration is complete and all ROS nodes have been successfully launched (indicated by a green "GO" with a check mark at the top bar), path planning can begin. To do this, switch to the planning view by clicking on the blue-highlighted Xamla symbol and selecting the menu item "World View". A 3D view opens showing the configured robot  along with an interactive marker (movable coordinate system) at the "tool center point" (TCP) of the robot. Use the left mouse button to move and rotate the interactive marker. As a result, a semitransparent "ghost" of the robot will appear and follow the movements of the interactive marker. When the desired target pose is reached with the "ghost", click on the "Plan" button at the top bar and a white path from the start pose to the target pose will appear (see Fig. 4.1). 
 

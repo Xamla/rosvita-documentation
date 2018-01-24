@@ -1,52 +1,63 @@
-The graph concept
-******************
+***********************
+ROSVITA Graph Concept
+***********************
 
-TODO: Translate this text to english!
+To create a new "xgraph", click on the "+ New" button in the top bar. The graph view opens and the name of the new xgraph appears in the list of "Runtime Slots" together with its process ID (see top left edge of the ROSVITA environment). 
+On the right side bar under the title "Module Catalog", you can now select individual modules and drag and drop them into the graph editor, which initially only has a "Start/Input" module and an "End/Output" module. 
+Clicking with the left mouse button in the graph editor will give you a text field, with which you can search for particular modules. 
+Clicking with the right mouse button in the graph editor will give you four different options: You can choose between inserting a comment, adding another module, and deleting or compiling the current graph. 
+If you click on a certain module in the graph editor, a short description of this module appears at the bottom of the right side bar. By clicking on one of the input, output, or parameter pins of the module, you will get a description of the clicked pin. Right-click on a module provides the option to duplicate or delete the module. By clicking on a module pin, it is also possible to draw connections between modules or module parameters: Click on the corresponding pin and keep the mouse button pressed, drag it to another module pin and release it there. By right-clicking on a connection and selecting "Disconnect", connections between modules or their parameters can be removed.
 
-Durch Klick auf das Feld "+ New" in der oberen Leiste wird ein neuer Graph angelegt. Es öffnet sich die Graphen-Ansicht und der neue Graph erscheint oben links in der Liste der "Runtime Slots" zusammen mit seiner Prozess-ID ("PID"). Rechts in der Leiste lassen sich nun unter "Module Catalog" einzelne Module auswählen und per Drag&Drop in den Graphen-Editor ziehen, der zu Begin nur ein "Start/Input"-Modul und ein "End/Output"-Modul besitzt. Wenn man mit der linken Maustaste in den Graphen-Editor klickt, erscheint zudem ein Textfeld, mit dem man gezielt nach Modulen suchen kann. Durch Klick mit der rechten Maustaste in den Graphen-Editor erhält man eine Auswahl, in der man zwischen dem Einfügen eines Kommentars, dem Hinzufügen eines weiteren Moduls, dem Löschen und dem Kompilieren des aktuellen Graphen auswählen kann. Ist ein bestimmtes Modul angeklickt, so erscheint unten in der rechten Leiste unter "Help" eine kurze Beschreibung zu dem angeklickten Modul. Bei Klick auf einen der Ein/Ausgänge (bzw. Parameter) des Moduls, erhält man dort eine Beschreibung zu dem angeklickten Pin. Per Rechtsklick auf ein Modul lässt sich dieses duplizieren oder löschen. Durch Anklicken eines Modul-Pins lassen sich zudem Verbindungen zwischen Module, bzw. Modulparametern ziehen. Dazu nach Klick auf den entsprechenden Pin die Maustaste gedrückt halten, zu einem anderen Modul-Pin ziehen und dort loslassen. Durch Rechtsklick auf eine Verbindung und Auswahl von "Disconnect" lassen sich Verbindungen zwischen Modulen bzw. deren Parametern wieder lösen.
+.. note:: The triangular green module pins denote so-called "flow connections", i.e. between these pins always just one connection can be drawn. You cannot have multiple connections on a triangular pin. The round gray module pins, on the other hand, are "parallel connections", i.e. such a pin can be connected to several other pins.
 
-**Wichtig:** Die dreieckigen, grünen Pins an den Modulen, bezeichnen sogenannte "Flow-Connections", d.h. zwischen diesen Pins kann immer nur genau eine Verbindung gezogen werden. An einem dreieckigen Pin können also nicht mehrere Verbindungen anliegen. Die grauen, runden Pins an den Modulen dagegen sind "Parallel-Connections", d.h. ein solcher Pin kann mit mehreren anderen Pins Verbunden sein.
+Module parameter values ​​can either be entered manually in the corresponding text fields of the "Properties" pane at the right side bar, or set by a connection to another module that provides these values. To show the parameter fields of a certain module in the "Properties" pane, the corresponding module has to be clicked (see Fig. 9.1).
 
-Viele Modulparameterwerte lassen sich entweder von Hand in das entsprechende Textfeld eintragen, oder durch eine Verbindung zu einem anderen Modul, das diese Werte liefert, setzen. Hat man den Graphen von "Start" bis "Ende" fertiggestellt, so lässt er sich über die Felder "Save as..." bzw. "Save" in der oberen Leiste abspeichern und durch Klick auf das Feld "Start" bzw. "Stop" ausführen bzw. anhalten. Beinhaltet die Ausführung des Graphen eine Roboterbewegung (wie im nachfolgenden Beispiel), so lässt sich diese im "World View" (z.B. in einem weiteren Browser-Fenster) beobachten. 
+.. figure:: images/Graph_Editor.png
 
-### <a name="tag9.1"></a> Beispiel-Graph:
+   Figure 9.1  ROSVITA Graph Editor.
 
-Im Folgenden wollen wir einen einfachen Beispielgraphen bauen, der das Graphenkonzept noch einmal anschaulich verdeutlicht. Dieser Graph soll bei Ausführung bewirken, dass der Roboter (hier ein UR5 Arm) in eine bestimmte Gelenkwinkelstellung (die nicht die aktuelle Gelenkwinkelstellung ist) fährt. Wir setzen voraus, dass im "World View" bereits einige Gelenkwinkelstellungen abgespeichert wurden, von denen nun eine angefahren werden soll.
+Once you have finished the graph from "Start" to "End", you can save it by pressing the button "Save as..." or "Save" at the top bar of the graph editor. Moreover, you can execute the graph by clicking on the "Start" button, and stop the execution by clicking on the "Stop" button. If the execution of the graph involves a robot movement (as in the following example), then this movement can be observed in the "World View" (e.g. opened in a second browser window).
 
-#### Modul-Auswahl:
+.. note:: Before executing a graph, make sure that your current robot configuration has been compiled and ROS has  been started successfully (indicated by a green "GO" with check mark at the top bar of the ROSVITA environment).
 
-Für die Erstellung des Beispielgraphen benötigen wir folgenden Module: 
-* "MoveJ" (im "Module Catalog" unter "Xamla"->"Robotics"->"JointPath", oder direkt über die Modul-Suche)
-* "CreatePlanParameters" (im "Module Catalog" unter "Xamla"->"Robotics"->"JointPath")
-* "GetJointValuesById" (im "Module Catalog" unter "Rosvita->WorldView")
-* optional: "PropertyAccessor" (2x) (im "Module Catalog" unter "Xamla")
-* optional: "ViewString" (3x) (im "Module Catalog" unter "Xamla"->"Graph"->"Controls")
+Example Graph:
+==============
 
-Mit dem Modul "MoveJ" lässt sich der Roboter in eine bestimmte Gelenkwinkelstellung fahren. Dazu werden die Planungsparameter ("moveGroupName", "joints", "maxVelocity", ...) und die Zielwerte für die Gelenkwinkel benötigt. Die aktuellen Planungsparameter erhält man mit dem Modul "CreatePlanParameters". In diesem Modul muss nur der Namen der zu bewegenden MoveGroup (z.B. "urcontroller") eingetragen werden. Für alle weiteren Planungsparameter werden automatisch die Default-Werte geladen. Zielwerte für die Gelenkwinkel lassen sich mit dem Modul "GetJointValuesById" laden. Dazu muss man nur den Namen einer der zuvor im "World View" abgespeicherten Gelenkwinkelkonfigurationen (z.B. "JointValues_1") in das Feld "id" dieses Moduls eintragen. 
+In the following we want to build a simple example graph, which concretely illustrates the graph concept. This graph is designed to cause the robot (here a UR5 arm) to move to a specific joint angle position. We assume that in the "World View" already some joint angle positions have been stored, such that we can choose one of them as target position for the movement.
 
-#### Modul-Verbindungen:
+Module Selection:
+-----------------
 
-Verbunden werden die so konfigurierten Module nun folgendermaßen: 
+To create the example graph, we need the following modules:
 
-Flow-Connections: <br />
-Start-Modul -> "CreatePlanParameters"-Modul -> "GetJointValueById"-Modul -> "MoveJ"-Modul -> "End"-Modul
+* "MoveJ" (can be found in the "Module Catalog" under "Xamla"->"Robotics"->"JointPath", or directly via module search)
+* "CreatePlanParameters" ("Module Catalog": "Xamla"->"Robotics"->"JointPath")
+* "GetJointValuesById" ("Module Catalog": "Rosvita"->"WorldView")
+* optional: "PropertyAccessor" (2x) ("Module Catalog": "Xamla")
+* optional: "ViewString" (3x) ("Module Catalog": "Xamla"->"Graph"->"Controls")
 
-Parallel-Connections: <br />
-* "CreatePlanParameters":"Parameters" -> "MoveJ":"Parameters"
-* "GetJointValuesById":"Result0" -> "MoveJ":"target"
+With the "MoveJ" module, the robot can be moved to a specific joint angle position. This operation requires the planning parameters ("moveGroupName", "joints", "maxVelocity", ...) and the target values ​​for the joint angles. The current planning parameters are obtained with the module "CreatePlanParameters". In the property fields of this  module, only the name of the move group to be moved (e.g. "urcontroller") has to be entered. For all other planning parameters the default values ​​are automatically loaded. Target values ​​for the joint angles can be loaded with the module "GetJointValuesById": Simply enter the name of one of the joint angle configurations previously saved in the "World View" (e.g. "JointValues_1") in the field "id" of this module.
 
-Will man überprüfen, ob die Planungsparameter und die Zielgelenkwinkel richtig gesetzt wurden, so baut man noch die Module "PropertyAccessor" und "ViewString" an verschiedenen Stellen ein:
+Module Connections:
+-------------------
 
-* "CreatePlanParameters":"Parameters" -> "PropertyAccessor":"Item" und "PropertyAccessor":"MoveGroupName" -> "ViewString":"string" sollte jetzt den Namen der MoveGroup also "urcontroller" Anzeigen.
-* "GetJointValuesById":"Result0" -> "PropertyAccessor":"Item" und "PropertyAccessor":"JointSet" -> "ViewString":"string" bzw. "PropertyAccessor":"Values" -> "ViewString":"string" sollte jetzt die Namen bzw. Werte der Gelenke anzeigen.
+The modules configured above are now connected as follows:
 
-#### Abbildung des Beispielgraphen:
+**Flow connections:**
+
+"Start" -> "CreatePlanParameters" -> "GetJointValueById" -> "MoveJ" -> "End"
+
+**Parallel connections:**
+
+* "CreatePlanParameters": "Parameters" -> "MoveJ": "Parameters"
+* "GetJointValuesById": "Result0" -> "MoveJ": "target"
+
+If you want to check whether the planning parameters and the target joint angles have been set correctly, add the modules "PropertyAccessor" and "ViewString" to the graph to display the name of the move group and the names and values of the joint angles (see Fig. 9.2).
+
+Screenshot of the Example Graph:
+--------------------------------
 
 .. figure:: images/ROSVITA_Example_Graph.png
 
-   Figure 9.1  ROSVITA example graph.
-
-TODO:
-* Subgraphen
-
+   Figure 9.2  ROSVITA Example Graph.
 

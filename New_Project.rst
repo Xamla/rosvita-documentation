@@ -1,5 +1,6 @@
-Creating a new project
-***********************
+************************
+Creating a New Project
+************************
 
 In the ROSVITA main development environment, by clicking on the blue-highlighted "Xamla" icon in the upper left corner, 
 a selection bar appears, in which you select the menu item "New Project".

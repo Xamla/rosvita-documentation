@@ -1,5 +1,6 @@
-Creating a robot configuration
-*******************************
+********************************
+Creating a Robot Configuration
+********************************
 
 When clicking on the blue-highlighted "Xamla" symbol in the top left corner and selecting the menu item "Configuration", 
 a sidebar for selecting robot parts, actuators, sensors, motion planners and libraries appears on the right-hand side of 

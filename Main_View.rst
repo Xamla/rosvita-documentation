@@ -1,5 +1,6 @@
-The ROSVITA Main View
-**********************
+*********************
+ROSVITA Main View
+*********************
 
 After successful download, import and start of the ROSVITA Docker image (see previous chapter), open an internet browser (e.g. "Chrome") and enter ``localhost:5000`` in the address bar. The login screen of ROSVITA appears (see Fig. 1.1).
 

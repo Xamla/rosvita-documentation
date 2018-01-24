@@ -1,5 +1,6 @@
-The ROSVITA Code Editor
-************************
+*********************
+ROSVITA Code Editor
+*********************
 
 Double-clicking on a file in the integrated file browser opens it in the ROSVITA code editor, which offers several helpful features:
 

@@ -1,9 +1,8 @@
-Using Lua scripts
-******************
+*******************
+Using Lua Scripts
+*******************
 
-TODO: Translate this text to english!
-
-Im Folgenden wird ein einfaches Beispielskript gezeigt, dessen Ausführung bewirkt, dass der Roboter (hier ein UR5 Arm) in eine bestimmte Gelenkwinkelstellung (die nicht die aktuelle Gelenkwinkelstellung ist) fährt. Dazu wird im Unterordner "``src``" des aktuellen Projektordners z.B. folgendes LUA-Skript mit Namen "``simple_movement.lua``" angelegt::
+In the following, a simple example script is shown, the execution of which causes the robot (e.g. a UR5 arm) to move to a specific joint angle position::
 
    local ros = require "ros"
    local moveit = require "moveit"
@@ -15,17 +14,29 @@ Im Folgenden wird ein einfaches Beispielskript gezeigt, dessen Ausführung bewir
    local components = require "xamlamoveit.components"
    local mc = require "xamlamoveit.motionLibrary".MotionService(nh)  -- motion client
    
+   math.randomseed(os.time())
+
+   local function sign(x)
+     if x > 0 then return 1 elseif x < 0 then return -1 else return 0 end
+   end
+
    function main()
      local move_group_names, move_group_details = mc:queryAvailableMovegroups()
      local move_group = move_group_names[1]
+     local dim = #move_group_details[move_group].joint_names
      local current_joint_values = mc:queryJointState(move_group_details[move_group].joint_names)
      local plan_parameters = mc:getDefaultPlanParameters(move_group, move_group_details[move_group].joint_names)
    
-     local target_joint_values_1 = torch.load("target_joint_values_1.t7")
-     local target_joint_values_2 = torch.load("target_joint_values_2.t7")
-     local target_values = target_joint_values_2
-   
-     local ok, joint_path = mc:planJointPath(current_joint_values, target_values, plan_parameters)
+     -- Get joint limits:
+     local max_min_pos, max_vel, max_acc = mc:queryJointLimits(plan_parameters.joint_names)
+
+     -- Construct random target joint values within joint limits:
+     local target_joint_values = torch.DoubleTensor(dim)
+     for i=1,dim do
+       target_joint_values[i] = (max_min_pos[i][1]-max_min_pos[i][2]) * math.random() + max_min_pos[i][2]
+     end
+  
+     local ok, joint_path = mc:planJointPath(current_joint_values, target_joint_values, plan_parameters)
      print("Ok?")
      print(ok)
      print("Joint path:")
@@ -38,18 +49,20 @@ Im Folgenden wird ein einfaches Beispielskript gezeigt, dessen Ausführung bewir
        mc:executeJointTrajectory(joint_trajectory, plan_parameters.collision_check)
        print("Movement successfully finished.")
      else
-       ros.ERROR("Planning FAILD")
+       ros.ERROR("Planning failed.")
      end
      
-     -- shutdown
      sp:stop()
      ros.shutdown()
    end
    
    main()
 
-Im gleichen Ordner müssen zudem Zielwerte für die Gelenkwinkel ("target_joint_values_1.t7" und "target_joint_values_2.t7") hinterlegt sein. Der Aufruf dieses LUA-Skripts erfolgt dann im ROSVITA Terminal über den Befehl ``th simple_movement.lua``.
-Im "World View" lässt sich die Roboterbewegung bei Ausführung des Skripts beobachten. 
+Copy the content shown above into a file "``simple_movement.lua``" and place it into the subfolder "src" of your project folder.
+Then execute the LUA script by typing the command ``th simple_movement.lua`` in the ROSVITA terminal.
+Now, in the "World View" (e.g. opened in a second browser) the robot movement can be observed.
 
-Hier wurden einige Unterpakete des Pakets "xamlamoveit" verwendet. Dieses findet man unter ``/home/xamla/Rosvita.Control/lua/xamlamoveit``. Insbesondere die Funktionen der MotionService-Klasse (in ``/home/xamla/Rosvita.Control/lua/xamlamoveit/motionLibrary/motionService.lua``) wurden hier verwendet.
+.. note:: Before running the script, make sure that your current robot configuration has been compiled and ROS has  been started successfully (indicated by a green "GO" with check mark at the top bar of the ROSVITA environment).
+
+Here we used some subpackages of the package "xamlamoveit". The package "xamlamoveit" can be found at ``/home/xamla/Rosvita.Control/lua/xamlamoveit``. In particular, we used some functions of the "MotionService" class, which is implemented in the file "motionService.lua" and can be found here: ``/home/xamla/Rosvita.Control/lua/xamlamoveit/motionLibrary/motionService.lua``.
 
