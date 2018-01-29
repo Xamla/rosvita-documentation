@@ -56,7 +56,7 @@ The following text should appear in the terminal::
    Ok
    Use 'docker attach rosvita' to attach to the container. Use CTRL+P, CTRL+Q to detach from the container.
 
-In an internet browser (for example in "Chrome"), the user interface of the "Rosvita Robot Programming System" can now be opened by entering ``localhost: 5000`` in the address bar.
+In an internet browser (for example in "Chrome"), the user interface of the "Rosvita Robot Programming System" can now be opened by entering ``localhost:5000`` in the address bar.
 The login screen appears. After successful login with username and password, the ROSVITA main development environment opens.
 
 To stop ROSVITA and to remove the ROSVITA container simply type::

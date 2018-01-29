@@ -19,7 +19,7 @@ Type in your username and password and the ROSVITA main development environment 
 The main view of the ROSVITA robot programming environment (Fig. 1.2) consists of several parts:
 
 1. A central start window ("multi document area") from which a new project can be created and a stored project can be opened. Later, this window will display either the configuration of the robot ("Configuration View"), the "Robot Jogging", the path planning ("World View"), the system monitoring ("Monitoring View"), an executable graph (.xgraph), or an open file (e.g. a .xacro file).
-2. A header that displays the current project name and the status of the underlying ROS robot operating system.
+2. A header that displays the current project name (if a project is opened) and the status of the underlying ROS robot operating system.
 3. Another header for each view. Depending on the selected view, there are buttons for compiling, saving, starting, stopping, selecting a kinematic chain ("Move Group") for path planning, etc.
 4. A listing of the loaded graphs (.xgraphs) together with the corresponding process IDs (PIDs).
 5. A file browser with file search, path display, upload/download between local computer and ROSVITA server, etc.

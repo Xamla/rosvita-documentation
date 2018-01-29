@@ -84,6 +84,6 @@ The third example graph (see Fig. 9.3) extends the second example graph by a for
 Module Selection:
 ^^^^^^^^^^^^^^^^^^
 
-In addition to the modules from "Example Graph2", we only need a "ForLoop" module, which can be found in the "ModuleCatalog" under "Xamla"->"Robotics". The "ForLoop" module, enables us to repeatedly execute parts of the graph (here, the two "MoveJ" commands). As parameters values it only needs a start and an end value, as well as an increment for the counting.
+In addition to the modules from "Example Graph2", we only need a "ForLoop" module, which can be found in the "ModuleCatalog" under "Xamla"->"Robotics". The "ForLoop" module, enables us to repeatedly execute parts of the graph (here, the two "MoveJ" commands). As parameter values it only needs a start and an end value, as well as an increment for the counting.
 
 
