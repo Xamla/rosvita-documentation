@@ -2,18 +2,46 @@
 Using Lua Scripts
 *******************
 
-In the following, a simple example script is shown, the execution of which causes the robot (e.g. a UR5 arm) to move to a specific joint angle position::
+In the following, two simple example LUA scripts are shown.
+The first of these scripts simply prints the current joint positions and endeffector pose of a robot "MoveGroup" (kinematic chain)::
+
+   local ros = require 'ros'
+   local motionLibrary = require 'xamlamoveit.motionLibrary'
+
+   local function main()
+     ros.init("readPose")
+
+     local nh = ros.NodeHandle()
+     local motion_service = motionLibrary.MotionService(nh)
+     local move_group = motion_service:getMoveGroup()  -- #If no name is specified first move group is used.
+
+     local q = move_group:getCurrentJointValues()
+     -- #Show joint names and corresponding joint values:
+     print('Current joint positions:')
+     local v = q.values
+     local n = q:getNames()
+     for i=1,v:size(1) do
+       print(string.format('%s: %f', n[i], v[i]))
+     end
+
+     local p = move_group:getCurrentPose()
+     print('Current pose (relative to world):')
+     print(p:toTensor()) -- #Show pose as 4x4 tensor.
+
+     motion_service:shutdown()
+     ros.shutdown()
+   end
+
+   main()
+
+.. note:: Elements of type "JointValues" (here: "q") consist of a vector of values ("q.values") for each joint and of the "xamlamoveit" datatype "JointSet", which contains the names of the joints. Hence, "JointValues" always needs a "JointSet", so it is quite clear which joints the vector of values refers to. 
+
+Execution of the second script causes the robot (e.g. a UR5 arm) to move to a random joint angle position within joint limits::
 
    local ros = require "ros"
-   local moveit = require "moveit"
-   local xutils = require "xamlamoveit.xutils"
-   ros.init("simple_movement")
-   local nh = ros.NodeHandle()
-   local sp = ros.AsyncSpinner() -- background job
-   sp:start()
-   local components = require "xamlamoveit.components"
-   local mc = require "xamlamoveit.motionLibrary".MotionService(nh)  -- motion client
-   
+   local motionLibrary = require 'xamlamoveit.motionLibrary'
+   local datatypes = require "xamlamoveit.datatypes"
+
    math.randomseed(os.time())
 
    local function sign(x)
@@ -21,48 +49,49 @@ In the following, a simple example script is shown, the execution of which cause
    end
 
    function main()
-     local move_group_names, move_group_details = mc:queryAvailableMovegroups()
-     local move_group = move_group_names[1]
-     local dim = #move_group_details[move_group].joint_names
-     local current_joint_values = mc:queryJointState(move_group_details[move_group].joint_names)
-     local plan_parameters = mc:getDefaultPlanParameters(move_group, move_group_details[move_group].joint_names)
-   
-     -- Get joint limits:
-     local max_min_pos, max_vel, max_acc = mc:queryJointLimits(plan_parameters.joint_names)
+     ros.init("simpleMovement")
 
-     -- Construct random target joint values within joint limits:
-     local target_joint_values = torch.DoubleTensor(dim)
-     for i=1,dim do
+     local nh = ros.NodeHandle()
+     local motion_service = motionLibrary.MotionService(nh)
+     local move_group = motion_service:getMoveGroup()
+ 
+     local plan_parameters = move_group:getDefaultPlanParameters()
+     local q = move_group:getCurrentJointValues()
+     print("start:")
+     print(q)
+
+     -- #Get joint limits:
+     local max_min_pos, max_vel, max_acc = motion_service:queryJointLimits(q:getNames())
+
+     -- #Construct random target joint values within joint limits:
+     local target_joint_values = torch.DoubleTensor(q.values:size(1))
+     for i=1,q.values:size(1) do
        target_joint_values[i] = (max_min_pos[i][1]-max_min_pos[i][2]) * math.random() + max_min_pos[i][2]
      end
-  
-     local ok, joint_path = mc:planJointPath(current_joint_values, target_joint_values, plan_parameters)
-     print("Ok?")
-     print(ok)
-     print("Joint path:")
-     print(joint_path)
-   
-     local success, joint_trajectory = mc:planMoveJoint(joint_path, plan_parameters)
-   
-     if success == 1 then
-       print("Moving ...")
-       mc:executeJointTrajectory(joint_trajectory, plan_parameters.collision_check)
-       print("Movement successfully finished.")
-     else
-       ros.ERROR("Planning failed.")
-     end
-     
-     sp:stop()
+     local target = datatypes.JointValues(q.joint_set, target_joint_values)
+     print("target:")
+     print(target)
+
+     move_group:moveJ(target)
+     print("Movement finished.")
+
+     motion_service:shutdown()
      ros.shutdown()
    end
    
    main()
 
-Copy the content shown above into a file "``simple_movement.lua``" and place it into the subfolder "src" of your project folder.
-Then execute the LUA script by typing the command ``th simple_movement.lua`` in the ROSVITA terminal.
-Now, in the "World View" (e.g. opened in a second browser) the robot movement can be observed.
+Copy the contents shown above into files "``readPose.lua``" and "``simpleMovement.lua``" and place them into the subfolder "src" of your project folder.
+Then execute the LUA scripts by typing the following commands in the ROSVITA terminal::
 
-.. note:: Before running the script, make sure that your current robot configuration has been compiled and ROS has  been started successfully (indicated by a green "GO" with check mark at the top bar of the ROSVITA environment).
+   cd /home/xamla/Rosvita.Control/projects/<project name>/src
+   th readPose.lua
+   th simpleMovement.lua
 
-Here we used some subpackages of the package "xamlamoveit". The package "xamlamoveit" can be found at ``/home/xamla/Rosvita.Control/lua/xamlamoveit``. In particular, we used some functions of the "MotionService" class, which is implemented in the file "motionService.lua" and can be found here: ``/home/xamla/Rosvita.Control/lua/xamlamoveit/motionLibrary/motionService.lua``.
+Now, the current joint angles and endeffector pose are printed in the terminal. Moreover, in the "World View" (e.g. opened in a second browser), the random robot movement can be observed.
+
+.. note:: Before running the scripts, make sure that your current robot configuration has been compiled and ROS has  been started successfully (indicated by a green "GO" with check mark at the top bar of the ROSVITA environment).
+
+Here we used some subpackages of the package "xamlamoveit". The package "xamlamoveit" can be found at ``/home/xamla/Rosvita.Control/lua/xamlamoveit``. In particular, we used some functions of the "MotionService" and "MoveGroup" classes, which are implemented in files "MotionService.lua" and "MoveGroup.lua", respectively, and can be found here: ``/home/xamla/Rosvita.Control/lua/xamlamoveit/motionLibrary/``.
+
 
