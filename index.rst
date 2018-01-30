@@ -30,5 +30,6 @@ The main application area for ROSVITA is the programming of adaptive behavior of
    Own_Robot_Models
    Graph_Concept
    Lua_Scripts
+   Combination_with_External_ROS
    Complex_Scene
 
