@@ -5,7 +5,7 @@ Getting Startet
 To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is:
 
 * An up-to-date `Ubuntu <https://help.ubuntu.com/community/Installation/>`_ operating system (16.04 or higher),
-* The software container platform `Docker <https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce>`_,
+* The software container platform `Docker <https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce>`_ (:ref:`short installation instructions <docker-installation-label>`),
 * And finally the `ROSVITA Docker image <http://xamla.com/en/#early-access>`_.
 
 .. note:: For safety reasons, it is recommended to use **two network cards**: one for your intranet and one for your robot. For setting up the two network connections, click on the symbol with the two arrows in the top bar of your Ubuntu installation and select the menu item "Edit Connections...". For your intranet choose a dynamic IP address (IPv4 Settings -> Method: Automatic (DHCP)) and for your robot choose a static IP address (IPv4 Settings -> Method: Manual).

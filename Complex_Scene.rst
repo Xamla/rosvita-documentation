@@ -2,7 +2,7 @@
 Building a Complex Scene
 **************************
 
-.. hint:: For a better understanding, it is recommended to first read the chapter "Creating a Robot Configuration".
+.. hint:: For a better understanding, it is recommended to first read the chapter :ref:`robot-config-label`.
 
 If several robot parts and associated actuators shall be added to a scene (e.g. a "Yaskawa Motoman SDA10D" and the different parts of the "Weiss Robotics WSG-50 Gripper"), they must be linked together correctly.
 This is done by clicking on the corresponding robot part in the list of added "RobotParts" on the left side of the "Configuration" view and choosing a "Parent link" in the "Properties" bar belonging to this robot part. (E.g. robot part: "wsg50 mount", parent link: "arm_right_link_tool0" of the Yaskawa Motoman SDA10D.)

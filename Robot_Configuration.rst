@@ -1,3 +1,5 @@
+.. _robot-config-label:
+
 ********************************
 Creating a Robot Configuration
 ********************************
