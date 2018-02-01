@@ -19,11 +19,13 @@ If you want to build a robot model completely by yourself, the following `URDF/X
 To upload a folder containing your own robot model to the ROSVITA server, it is best to pack and compress it first: ``tar cvfz my_robot.tgz my_robot``. 
 Then with the ROSVITA file browser go into the directory ``/home/xamla/Rosvita.Control/library/robot_parts/`` and press the "Upload" button, after which you can upload the folder "``my_robot.tgz``". Now the uploaded folder only needs to be unpacked. To do this, use the ROSVITA terminal to go to the higher-level folder ``cd /home/xamla/Rosvita.Control/library/robot_parts/`` and then enter the following command: ``tar -xzvf my_robot.tgz``.
 
+.. note:: In the current ROSVITA start script (see chapter :ref:`getting-started-label`.) there is a Docker mapping of your own local "robot_parts" folder (``/home/<username>/Rosvita/robot_parts``) to a subfolder "custom" of the folder "robot_parts" in the ROSVITA library (``/home/xamla/Rosvita.Control/library/robot_parts/custom``). Hence, in order to make your own robot model selectable in ROSVITA, it is not necessary to upload it to the ROSVITA server, but it is sufficient to place it in your own "robot_parts" folder (under ``/home/<username>/Rosvita/robot_parts``). 
+
 .. note:: When creating your own robot models, make sure that these models do not become too large (do not use several GigaByte large CAD files), because working with (and especially visualizing) such huge models is naturally very slow.
 
 In the ROSVITA file browser under the path ``/home/xamla/git/`` you will find some additional GitHub repositories with robot models and drivers. Under the path ``/home/xamla/catkin_ws/src/`` there are links to some of these repositories, links to some other components of ROSVITA, and most important a link to the folder ``/home/xamla/Rosvita.Control/library/robot_parts``. The ROSVITA terminal can be used to create links to other repositories (e.g. ``ln -s /home/xamla/git/my_robot_driver /home/xamla/catkin_ws/src/``). To build the catkin workspace with the ROSVITA terminal simply go into the catkin workspace (``cd /home/xamla/catkin_ws/``) and enter the command ``catkin_make``.
 
-.. note:: All robot models uploaded to the library will get lost when ROSVITA is stopped (-> no permanent storage). It is therefore advisable to upload the self-created robot models to your own project folder (under ``/home/xamla/Rosvita.Control/projects/<project name>/robotModel/``). Changes in your own project folder are also stored locally in the corresponding project folder (under ``/home/<username>/rosvita/projects/<project name>/robotModel/``) and are thus retained even after ROSVITA has been stopped and detached from the Docker container.
+.. note:: All robot models uploaded to the library will get lost when ROSVITA is stopped (-> no permanent storage). It is therefore advisable to upload the self-created robot models to your own project folder (under ``/home/xamla/Rosvita.Control/projects/<project name>/robotModel/``). Changes in your own project folder are also stored locally in the corresponding project folder (under ``/home/<username>/Rosvita/projects/<project name>/robotModel/``) and are thus retained even after ROSVITA has been stopped and detached from the Docker container.
 
 
 Relocation of the "Tool Center Point (TCP)":
@@ -40,10 +42,10 @@ Example::
      <origin xyz="-0.0037 -0.0072 0.2092" rpy="0 0 0" />      
    </joint>
 
-"origin xyz" and "rpy" are the position and rotation (Euler angles) of the TCP relative to the "parent link" (here: "wrist_3_link").
+"origin xyz" and "rpy" are the position and rotation (Euler angles) of the TCP relative to the parent link (here: "wrist_3_link").
 After this addition of the "tcp_link" in the file "robotModel/main.xacro", this file has to be recompiled by pressing the "Compile" button of the ROSVITA xacro editor.
-Hereupon, the new "tcp_link" appears in the "3D View" to the right of the opened .xacro file.
+Hereupon, the new tcp link appears in the 3D view to the right of the opened .xacro file.
 When changing to the "Configuration View", the new configuration must be compiled first (i.e. click the "Compile" button in the "Configuration View") so that the new link is displayed and selectable (e.g. as "Tip Link" of a "Move Group").
-Thereto, in the "Configuration View" under "MotionPlanning"->"MoveIt! Motion Planning Framework (ROS)"->"groups"->"*<group_name>*" select the new "tcp_link" as "Tip link". After building the new robot configuration, starting ROS and changing into the "World View", the interactive marker also appears at the new "tcp_link".
+Thereto, in the "Configuration View" under "MotionPlanning"->"MoveIt! Motion Planning Framework (ROS)"->"groups"->"*<group_name>*" select the new "tcp_link" as "Tip link". After building the new robot configuration, starting ROS and changing into the "World View", the interactive marker appears at the new tcp link.
 
 

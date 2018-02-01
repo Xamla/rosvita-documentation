@@ -94,4 +94,6 @@ Now, the current joint angles and endeffector pose are printed in the terminal. 
 
 Here we used some subpackages of the package "xamlamoveit". The package "xamlamoveit" can be found at ``/home/xamla/Rosvita.Control/lua/xamlamoveit``. In particular, we used some functions of the "MotionService" and "MoveGroup" classes, which are implemented in files "MotionService.lua" and "MoveGroup.lua", respectively, and can be found here: ``/home/xamla/Rosvita.Control/lua/xamlamoveit/motionLibrary/``.
 
+Further helpful scripts can be found within the subfolders of the higher-level path ``/home/xamla/Rosvita.Control/lua/``, in particular ``cli/teachWaypoints.lua`` and ``cli/moveRobot.lua``, as well as ``auto_calibration/runCalibration.lua`` (the latter requires the addition of a camera to the robot configuration).
+
 
