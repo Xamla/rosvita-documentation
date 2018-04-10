@@ -5,7 +5,12 @@ Building a Complex Scene
 .. hint:: For a better understanding, it is recommended to first read the chapter :ref:`robot-config-label`.
 
 If several robot parts and associated actuators shall be added to a scene (e.g. a "Yaskawa Motoman SDA10D" and the different parts of the "Weiss Robotics WSG-50 Gripper"), they must be linked together correctly.
-This is done by clicking on the corresponding robot part in the list of added "RobotParts" on the left side of the "Configuration" view and choosing a "Parent link" in the "Properties" bar belonging to this robot part. (E.g. robot part: "wsg50 mount", parent link: "arm_right_link_tool0" of the Yaskawa Motoman SDA10D.)
+This is done by clicking on the corresponding robot part in the list of added "RobotParts" on the left side of the "Configuration" view and choosing a "**Parent link**" in the "**Properties**" bar belonging to this robot part. 
+**Example:** Robot part: "wsg50 mount", parent link: "arm_right_link_tool0 (Motoman SDA10D)" (see Fig. 12.1)
+
+.. figure:: images/ParentLink_Setting.png
+
+   Figure 12.1  Setting of a parent link in the properties list of a robot part.
 
 Overall, the following robot parts and parent links are needed to e.g. connect the Weiss Robotics WSG-50 gripper to the right arm of the Yaskawa Motoman SDA10D:
 
@@ -22,10 +27,41 @@ In addition, the following actuators are needed:
 
 After pressing the "Compile" button, the robot with gripper should appear in the 3D view of the "Configuration" window.
 
-.. note:: If you want to use several **same robot parts** in the scene (for example, two WSG-50 grippers), they must be distinguished by "**Prefix**". Simply use the "Prefix" field in the "Properties" list for the corresponding robot part.
 
-.. note:: All changes in files of your own project folder (under ``/home/xamla/Rosvita.Control/projects``) are saved locally to your computer (at ``/home/<username>/Rosvita/projects``). **Changes outside of your own project folder**, e.g. changes to a robot part in the library (``/home/xamla/Rosvita.Control/library``) **will not be saved permanently** and get lost when ROSVITA is stopped.
+Usage of identical robot parts (distinction via prefix):
+---------------------------------------------------------
 
+If several **same robot parts** shall be added to the scene (for example, two WSG-50 grippers), they must be distinguished by "**Prefix**". Thereto, simply use the **"Prefix" field** in the **"Properties" list** for the corresponding robot part and actuator.
+
+.. figure:: images/Prefix_RobotPart.png
+
+.. figure:: images/Prefix_Actuator.png
+
+   Figures 12.2 and 12.3  Prefix usage for e.g. two WSG-50 grippers.
+
+If two **identical robot arms** shall be added to the scene (e.g. two UR5 robot arms), in addition to the distinction by "**Prefix**", a **second move group** and a **second end effector** for this move group have to be created. This can be done by using the "**+ Add**" button in the top bar of the configuration view (see Fig. 12.5).
+
+.. figure:: images/2xUR5_Prefix.png
+
+   Figure 12.4  Prefix usage for e.g. two UR5 robot arms.
+
+.. figure:: images/2xUR5_MoveGroups.png
+
+   Figure 12.5  Addition of a second move group and end effector for the second UR5 robot arm.
+
+.. note:: To be able to select the renamed links (e.g. "second_base_link") in the "Properties" list of e.g. the second move group, the "Compile" button has to be pressed after the renaming. Moreover, to be able to select the second move group as group for e.g. the second end effector, again the "Compile" button has to be pressed first. Hence, for creating a configuration with two identical robot parts, the "**Compile**" button has to be pressed **several times**.  
+
+
+Configuring a real robot:
+--------------------------
+
+To configure a real robot, in the actuator's "Properties" list the "Simulate" checkmark has to be removed and instead, the  IP address of the robot has to be entered (see Fig. 12.6). 
+
+.. figure:: images/Real_Robot.png
+
+   Figure 12.6  Configuration of a real robot. (The IP address must be changed to the IP of your robot.)
+
+.. note:: All USB devices (e.g. cameras) have to be plugged in before starting ROSVITA.
 
 ... to be continued
 

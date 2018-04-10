@@ -15,7 +15,9 @@ The required steps for the Docker CE installation are:
 * Update the package database.
 * Install the latest version of Docker CE.
 
-To perform these steps, enter the following commands into the terminal::
+To perform these steps, enter the following commands into the terminal:
+
+.. code-block:: bash
 
    sudo apt-get remove docker docker-engine docker.io
    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
@@ -24,7 +26,9 @@ To perform these steps, enter the following commands into the terminal::
    sudo apt-get update
    sudo apt-get install docker-ce
 
-Now, optionally check if Docker is running and add your username (here: "rosvita") to the Docker group::
+Now, optionally check if Docker is running and add your username (here: "rosvita") to the Docker group:
+
+.. code-block:: bash
 
    sudo systemctl status docker
    sudo usermod -aG docker rosvita
