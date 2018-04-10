@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=ROSVITA
+Comment=Starting ROSVITA..
+Exec=/opt/Rosvita/rosvita_start.sh
+Icon=/opt/Rosvita/rosvita_icon.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;

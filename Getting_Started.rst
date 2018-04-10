@@ -4,55 +4,47 @@
 Getting Started
 *****************
 
-To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is:
+To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**).
 
-* An up-to-date |Ubuntu_link| operating system (16.04 or higher),
-* The software container platform |Docker_link| (:ref:`short installation instructions <docker-installation-label>`),
-* And finally the **ROSVITA Docker image**.
-
-.. note:: For safety reasons, it is recommended to use **two network cards**: one for your intranet and one for your robot. For setting up the two network connections, click on the symbol with the two arrows in the top bar of your Ubuntu installation and select the menu item "Edit Connections...". For your **intranet** choose a **dynamic IP address** (IPv4 Settings -> Method: Automatic (DHCP)) and for your **robot** choose a **static IP address** (IPv4 Settings -> Method: Manual).
-
-To be able to pull the ROSVITA Docker image from |Docker_Hub_link|, you need a Docker account. If you do not have a Docker ID already, simply |Docker_SignUp_link| with username, Email address and password. If you are interested in getting early access to a BETA version of ROSVITA, please |Xamla_EarlyAccess_link| so we can give you permission to pull the ROSVITA Docker image from Docker Hub. Moreover, we intend to make publicly available a first official version of ROSVITA in mid-2018. From then on, everyone with valid Docker account should be able to ``docker pull`` the ROSVITA image from Docker Hub without restrictions.
-
-Use the following commands to pull the latest ROSVITA Docker image from Docker Hub. 
-**Change the version tag v0.2 to the current version number!**
+To **get ROSVITA**, simply download the shell script :download:`getROSVITA.sh <downloads/getROSVITA.sh>`.
+Then change permissions to be able to execute the script und finally run the script, i.e. in a terminal type:
 
 .. code-block:: bash
 
-   sudo docker login
-   sudo docker pull xamla/early-access-rosvita:v0.2
+   cd ~/Downloads; sudo chmod u+x getROSVITA.sh; ./getROSVITA.sh
 
-Thereafter, ROSVITA can be started by following the steps:
+.. note:: At the moment you need a valid Docker account and **early access privileges** to download ROSVITA. If you are interested in getting early access to a BETA version of ROSVITA, please |Xamla_EarlyAccess_link|. We will make publicly available a first official version of ROSVITA in mid-2018. From then on, everyone should be able to get ROSVITA without restrictions.
 
-1. Go into your home folder and download the shell script |Rosvita_StartScript_link|.
-2. Change permissions to be able to execute the start script.
-3. And finally execute the script.
+The script will:
 
-.. code-block:: bash
+1. Install |Docker_link| if not already installed.
+2. Download the **ROSVITA Docker image** from |Docker_Hub_link|.
+3. Download the **ROSVITA start script**.
+4. Create a **desktop icon** for starting ROSVITA.
+5. Finally **start ROSVITA** and open the user interface **in Google Chrome**, which if necessary will be installed.
 
-   cd ~
-   wget https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/Downloads/rosvita_start.sh
-   chmod u+x rosvita_start.sh
-   ./rosvita_start.sh
+As a result, the ROSVITA login screen appears. After successful login with username and password (default: **admin** and **r2d2c3po**), the ROSVITA main development environment opens (see :ref:`next chapter <main-view-label>`).
 
-.. note:: **Change the version tag v0.2** of the ROSVITA Docker image used in this script **to the actual version number:** ``xamla/early-access-rosvita:v0.2 -> xamla/early-access-rosvita:vX.X``.
-
-The user interface of the "Rosvita Robot Programming System" can now be opened by entering ``localhost:5000`` in the address bar of your internet browser. We strongly recommend to use |Chrome_link|, because the user experience will be limited in Firefox due to the significantly slower browser performance. The login screen of ROSVITA appears. After successful login with username and password (default: **admin** and **r2d2c3po**), the ROSVITA main development environment opens (see :ref:`next chapter <main-view-label>`).
-
-To stop ROSVITA simply type:
+To **stop ROSVITA** simply type:
 
 .. code-block:: bash
 
    docker stop rosvita
 
-.. note:: All changes to files of the ROSVITA Docker image are temporary and get lost after an update of the image. Therefore, **do not modify the ROSVITA Docker image, but always make changes locally in your own project folder** (~/Rosvita/projects/).
+To **restart ROSVITA** simply **doubleclick the desktop icon** or open a terminal and run the start script by typing:
+
+.. code-block:: bash
+
+   /opt/Rosvita/rosvita_start.sh
+
+.. note:: We strongly recommend to run ROSVITA in |Chrome_link|, because in other internet browsers like Firefox the user experience will be limited due to the significantly slower browser performance.
 
 
 
 
 .. |Ubuntu_link| raw:: html
 
-   <a href="https://help.ubuntu.com/community/Installation/" target="_blank">Ubuntu</a> 
+   <a href="https://www.ubuntu.com/download/desktop" target="_blank">Ubuntu</a> 
 
 .. |Docker_link| raw:: html
 
@@ -60,21 +52,17 @@ To stop ROSVITA simply type:
 
 .. |Docker_Hub_link| raw:: html
 
-   <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> 
+   <a href="https://hub.docker.com/explore/" target="_blank">Docker Hub</a> 
 
-.. |Docker_SignUp_link| raw:: html
+.. |getROSVITA_script_link| raw:: html
 
-   <a href="https://cloud.docker.com/" target="_blank">sign up to Docker</a> 
+   <a href="https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/Downloads/getROSVITA.sh" target="_blank">getROSVITA.sh</a> 
+
+.. |Chrome_link| raw:: html
+
+   <a href="https://www.google.com/intl/en-CA/chrome/" target="_blank">Google Chrome</a> 
 
 .. |Xamla_EarlyAccess_link| raw:: html
 
    <a href="http://xamla.com/en/#early-access" target="_blank">contact us</a> 
-
-.. |Rosvita_StartScript_link| raw:: html
-
-   <a href="https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/Downloads/rosvita_start.sh" target="_blank">rosvita_start.sh</a> 
-
-.. |Chrome_link| raw:: html
-
-   <a href="https://www.google.com/intl/en-CA/chrome/" target="_blank">Chrome</a> 
 
