@@ -2,9 +2,9 @@
 Creating a New Project
 ************************
 
-In the ROSVITA main development environment, by clicking on the blue-highlighted "Xamla" icon in the upper left corner, 
-a selection bar appears, in which you select the menu item "New Project".
-Alternatively, you can also click on "New Project" directly in the middle of the start screen.
+In the ROSVITA main development environment, by clicking on the blue-highlighted **Xamla** icon in the upper left corner, 
+a selection bar appears, in which you select the menu item **New Project**.
+Alternatively, you can also click on **New Project** directly in the middle of the start screen.
 A text box appears in which you can enter the desired name of the project (see Fig. 2.1).
 
 
@@ -13,10 +13,10 @@ A text box appears in which you can enter the desired name of the project (see F
    Figure 2.1  Creation of a new project.
 
 
-.. note:: Enter a name without a path here, as the path under which the project is saved is already specified in the ROSVITA start script ("rosvita-start.sh").
+.. note:: Enter a name without a path here, as the path under which the project is saved is already specified in the ROSVITA start script ("rosvita_start.sh").
 
-After clicking on the "Create" button, the project is created and opened in the integrated file browser.
-Under the default path (normally "``/home/rosvita/Rosvita/projects/``") 
+After clicking on the **Create** button, the project is created and opened in the integrated file browser.
+Under the default path (normally ``/home/<username>/Rosvita/projects/``) 
 you will find the project folder with the previously entered name.
 So far it contains only empty folders ("db", "src") or files 
 ("robotModel/main.xacro", "robot.urdf", "project.json", "README.md"), that all contain empty structures,

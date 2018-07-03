@@ -9,11 +9,7 @@ else
    sudo apt-get remove docker docker-engine docker.io
    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-   if [[ $(lsb_release -rs) == "18.04" ]]; then
-      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu artful stable"
-   else
-      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-   fi
+   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    sudo apt-get update
    sudo apt-get install docker-ce
    if [[ $(sudo docker -v | grep -c 'Docker version') > 0 ]]; then
@@ -33,7 +29,7 @@ echo ""
 echo "The ROSVITA image will be downloaded from Docker Hub, press CTRL+C to cancel"
 read -p "Press ENTER to continue"
 echo "Getting ROSVITA from Docker Hub.."
-docker pull xamla/early-access-rosvita:v0.2
+docker pull xamla/early-access-rosvita:v0.7.0
 if [[ $(docker images | grep -c 'early-access-rosvita') == 0 ]]; then
    echo "Please log in to Docker first (via 'docker login'). Then run './getROSVITA.sh' again."
    exit 1
