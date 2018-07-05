@@ -4,8 +4,8 @@
 Version=1.0
 Name=ROSVITA
 Comment=Starting ROSVITA..
-Exec=/opt/Rosvita/rosvita_start.sh
-Icon=/opt/Rosvita/rosvita_icon.png
+Exec=/opt/rosvita/rosvita_start
+Icon=/opt/rosvita/rosvita_icon.png
 Terminal=false
 Type=Application
 Categories=Utility;Application;
