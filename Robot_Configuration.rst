@@ -23,7 +23,9 @@ Continuously pressing the left mouse button within the 3D view allows rotation, 
 
 .. note:: A robot configuration always needs at least one **Robot Part** (Xacro/URDF robot description, 3D visualization and collision model), as well as the associated **Actuator** (robot driver).
 
-By clicking on the **Save** button at the top bar of the **Configuration** view, the current configuration is saved 
+.. note:: In the **Properties** menu of the **Actuator** (here: **Robot Arm UR**) the **Simulate** checkmark is set per default. If you want to configure a **real robot**, you have to remove this checkmark and enter the IP adress of the robot (see also :ref:`here <config-real-robot-label>`).
+
+By clicking on the **Save** button at the top bar of the **Configuration View**, the current configuration is saved 
 in the current project, i.e. some of the files in the project folder created before are now filled with life.
 If you previously selected the **UR5** robot arm, in the **robotModel** folder a new folder 
 **part_ur5** will appear. This folder contains the visualization and the collision model of the UR5 robotic arm 
@@ -33,30 +35,21 @@ from which the URDF (Unified Robot Description Format) for the UR5 will be built
 Finally, it includes two additional files **CMakeLists.txt** and **package.xml**, 
 which are needed for compiling in a **Catkin** workspace under ROS. 
 The file **robotModel/main.xacro** that was already generated when the project was created, 
-will now include the **.xacro** file of the UR5 (``xacro:include filename="part_ur5/universal_robots-ur5.xacro``).
-
-In summary, we now have the following content in the project folder after adding and saving the UR5 robot arm:
-
-* Folder "db" -> empty file "worldview.json"
-* Folder "src" (empty)
-* Folder "robotModel" ->
-
-  * folder "part_ur5" (contains visualization and collision model, .xacro files and MoveIt! configuration of the UR5), 
-  * file "main.xacro" (description of the current configuration, now including the UR5 description)
-
-* File "robot.urdf" (description of the current configuration, now including the UR5 description)
-* File "project.json" (current MoveIt! configuration, now containing the UR5 MoveIt! configuration)
-* File "README.md" (empty textual description of the configuration)
+will now include the **.xacro** file of the UR5.
 
 To compile an existing configuration
 (i.e. building the URDFs from the .xacro files and building the MoveIt! configuration),
-press the **Compile** button at the top bar of the **Configuration** view.
+press the **Compile** button at the top bar of the **Configuration View**.
 In the **Output** terminal at the bottom of the ROSVITA environment, a message that the start configuration 
 was compiled successfully (similar to the following example message) appears::
 
    Start configuration build...
    [MoveItConfigurationGenerator] MoveIt! configuration generated.
+   [SrdfGenerator] SRDF generated.
+   [RobotUr5LaunchFileGenerator] Updating '/home/xamla/Rosvita.Control/projects/my_project/.config/temp/srdf/joint_limits.yaml'...
+   [RobotUr5LaunchFileGenerator] Launch file'.config/current/UniversalRobot-UR5.launch' written.
    [JointStateMonitorLaunchFileGenerator] Joint State Monitor launch file'.config/temp/jointStateMonitor.launch' written.
+   [JointStateMonitorLaunchFileGenerator] Joint State Monitor launch file'.config/temp/jointJogging.launch' written.
    [MasterLaunchFileGenerator] Master launch file'.config/temp/master.launch' written.
    Success.
 
@@ -66,13 +59,13 @@ message **ROS core stopped**.
 Now, you can start ROS by pressing the button **Start ROS** in the top bar.
 The roscore, the robot_state_publisher, the move_group, the xamlaJointMonitor, and several other nodes are started.
 An overview of the started processes can be obtained by clicking on the blue-highlighted Xamla symbol 
-and selecting the menu item **Monitoring** there. If everything works fine, a green **GO** replaces the warning message on the top right and the path planning can begin.
+and selecting the menu item **Monitoring** there. If everything works fine, after a few seconds a green **GO** replaces the warning message on the top right and the path planning can begin.
 
 .. figure:: images/Monitoring_View.png
 
    Figure 3.2  Monitoring View
 
-If instead the message **Heartbeat failure** appears next to the warning triangle,
+If instead the message **Heartbeat failure** appears next to the warning triangle and stays there for more than a few seconds,
 clicking on this warning opens the overview of the system status, i.e. of all processes that have been started.
 Moreover, hovering above this warning shows the status (**GO** or **NOGO**) of all nodes. This individual node status can also be seen when looking at the heartbeat output in the bottom pane.  
 By clicking on the **Restart** button in the top bar, which now replaces the **Start ROS** button, ROS will be restarted. 

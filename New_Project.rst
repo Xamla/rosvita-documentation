@@ -13,23 +13,13 @@ A text box appears in which you can enter the desired name of the project (see F
    Figure 2.1  Creation of a new project.
 
 
-.. note:: Enter a name without a path here, as the path under which the project is saved is already specified in the ROSVITA start script ("rosvita_start.sh").
+.. note:: Enter a name without a path here, as the path under which the project is saved is already specified in the ROSVITA start script.
 
-After clicking on the **Create** button, the project is created and opened in the integrated file browser.
-Under the default path (normally ``/home/<username>/Rosvita/projects/``) 
-you will find the project folder with the previously entered name.
-So far it contains only empty folders ("db", "src") or files 
-("robotModel/main.xacro", "robot.urdf", "project.json", "README.md"), that all contain empty structures,
-which will be filled later on.
+After clicking on the **Create** button, the project is created and opened in the **Configuration View** of ROSVITA.
+Moreover, the project folder is opened in the integrated file browser on the left.
 
-In summary the newly created project folder contains the following content (see also Fig. 2.2):
-
-* Folder "db" (empty)
-* Folder "src" (empty)
-* Folder "robotModel" -> File "main.xacro" (empty structure for the robot model)
-* File "robot.urdf" (empty structure for the robot model created from "main.xacro")
-* File "project.json" (empty structure for the MoveIt! configuration)
-* File "README.md" (empty textual description of the configuration)
+On your local host machine, you will find the project folder you just created under the path ``/home/<username>/Rosvita/projects/``.
+So far it contains only empty folders or files with empty structures that will be filled later on (see Fig. 2.2).
 
 .. figure:: images/Project_folder.png
    :scale: 60 %

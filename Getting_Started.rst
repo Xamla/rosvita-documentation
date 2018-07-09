@@ -43,8 +43,17 @@ To **stop ROSVITA** simply run the ROSVITA stop script:
 
    rosvita_stop
 
+To **update ROSVITA** simply run the **get_rosvita** script again, or use the following command:
+
+.. code-block:: bash
+
+   docker pull xamla/rosvita:latest
+
+With the terminal command ``docker images`` you will see all downloaded ROSVITA versions with corresponding image ids.
+Use ``docker rmi <image-id>`` to remove old versions and save disk space.
+
 If you have any trouble or would like to give us feedback, feel free to visit our |Rosvita_forum_link|.
-Moreover, check out our |Rosvita_video_link|.
+Moreover, check out our |Rosvita_video_link|, especially the |QuickStart_video_link|.
 
 .. note:: We strongly recommend to run ROSVITA in **Google Chrome**, because in other internet browsers like Firefox the user experience will be limited due to the significantly slower browser performance.
 
@@ -85,5 +94,9 @@ Moreover, check out our |Rosvita_video_link|.
 
 .. |Rosvita_video_link| raw:: html
 
-   <a href="https://youtu.be/VAfwk-MnBuA" target="_blank">ROSVITA tutorial video</a>
+   <a href="https://www.youtube.com/channel/UC37X4g0bLY7ID00RO_k8O4Q" target="_blank">ROSVITA tutorial videos</a>
+
+.. |QuickStart_video_link| raw:: html
+
+   <a href="https://youtu.be/VAfwk-MnBuA" target="_blank">ROSVITA quick start video</a>
 

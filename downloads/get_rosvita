@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo -e "   _  __                __\n  | |/ /___ _____ ___  / /___ _\n  |   / __ \`/ __ \`__ \/ / __ \`/\n /   / /_/ / / / / / / / /_/ /\n/_/|_\__,_/_/ /_/ /_/_/\__,_/\n\nROSVITA Installer v0.1\n"
+
+echo "In case of any problems with the installation please visit: https://discuss.xamla.com/"
+echo ""
+
+echo "Step 1:"
+echo "======="
 echo "Docker will be installed if not already there, press CTRL+C to cancel"
 read -p "Press ENTER to continue and follow the instructions on screen"
 
@@ -24,6 +31,8 @@ else
 fi
 echo ""
 
+echo "Step 2:"
+echo "======="
 echo "The ROSVITA image will be downloaded from Docker Hub, press CTRL+C to cancel"
 read -p "Press ENTER to continue"
 echo "Getting ROSVITA from Docker Hub.."
@@ -37,6 +46,8 @@ else
 fi
 echo ""
 
+echo "Step 3 and 4:"
+echo "============="
 echo "Creating scripts '/opt/rosvita/rosvita_start' and '/opt/rosvita/rosvita_stop' for starting and stopping ROSVITA.."
 cd /opt
 if [[ $(ls | grep -x rosvita | wc -l) == 0 ]]; then
@@ -62,13 +73,15 @@ else
       echo "ROSVITA stop script already exists."
    fi
 fi
-
 if [[ $(echo $PATH | grep /opt/rosvita | wc -l) == 0 ]]; then
    echo "Add path /opt/rosvita to your PATH variable in ~/.bashrc"
    echo 'export PATH=$PATH:/opt/rosvita' >> ${HOME}/.bashrc
 fi
 source ${HOME}/.bashrc
+echo ""
 
+echo "Step 5:"
+echo "======="
 echo "Creating desktop icon for starting ROSVITA.."
 cd ${HOME}/Desktop
 if [[ $(ls | grep -x ROSVITA.desktop | wc -l) > 0 ]]; then
@@ -83,14 +96,16 @@ fi
 echo "Finished."
 echo ""
 
+echo "Step 6:"
+echo "======="
 if [[ $(groups | grep docker | wc -l) > 0 ]]; then
-   echo "To start ROSVITA simply double click the desktop icon"
-   echo "If you have any trouble or would like to give us feedback, feel free to visit: http://discuss.xamla.com."
+   echo "To start ROSVITA simply double click the desktop icon."
+   echo "If you have any trouble or would like to give us feedback, feel free to visit: https://discuss.xamla.com/"
 else
    echo "IMPORTANT:"
    echo "The computer will be restarted now to make the addition to the docker group effective." 
-   echo "Afterwards you can start ROSVITA by double clicking the desktop icon."
-   echo "If you have any trouble or would like to give us feedback, feel free to visit: http://discuss.xamla.com."
+   echo "Afterwards you can start ROSVITA by simply double clicking the desktop icon."
+   echo "If you have any trouble or would like to give us feedback, feel free to visit: https://discuss.xamla.com/"
    read -p "Press ENTER to restart computer"
    sudo reboot
 fi
