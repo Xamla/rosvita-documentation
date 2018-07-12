@@ -4,15 +4,18 @@
 Getting Started
 *****************
 
-To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**) and an up-to-date internet browser (preferentially |Chrome_link|).
+To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**) and an up-to-date internet browser (preferentially |Chrome_link|). Moreover, please read the ROSVITA |License_link|.
 
-To **get ROSVITA**, simply download the shell script |get_script_link|, then change permissions to be able to execute the script und finally run the script, i.e. in a terminal type:
+To **get ROSVITA**, simply download the shell script |get_script_link|, then change permissions to be able to execute the script 
+and finally run the script, i.e. in a terminal type:
 
 .. code-block:: bash
 
    wget -q https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/downloads/get_rosvita
    chmod u+x get_rosvita
    ./get_rosvita
+
+Here, we use **wget** to download the script. If not already installed, simply install **wget** via ``sudo apt install wget``.
 
 The script will:
 
@@ -99,4 +102,8 @@ Moreover, check out our |Rosvita_video_link|, especially the |QuickStart_video_l
 .. |QuickStart_video_link| raw:: html
 
    <a href="https://youtu.be/VAfwk-MnBuA" target="_blank">ROSVITA quick start video</a>
+
+.. |License_link| raw:: html
+
+   <a href="https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/downloads/LICENSE" target="_blank">license agreement</a>
 

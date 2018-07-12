@@ -32,7 +32,7 @@ else
         if [[ "$1" == "--debug" ]]; then
                 echo "Starting debug mode of ROSVITA"
                 echo "To start ROSVITA afterwards, simply type 'rosvita' after pressing 'Enter'."
-                echo "Then open an internet brower and type 'http://localhost:5000' in the adress bar."
+                echo "Then open an internet browser and type 'http://localhost:5000/' in the adress bar."
                 read -p "Press ENTER to continue"
                 docker run -ti --net=host --rm --name=rosvita --user xamla --privileged -e DISPLAY=$DISPLAY -e host_uid=$(id -u) -e host_gid=$(id -g) -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp/.X11-unix -v ${HOME}/Rosvita/data:/home/xamla/Rosvita.Control/data -v ${HOME}/Rosvita/projects:/home/xamla/Rosvita.Control/projects -v ${HOME}/Rosvita/robot_parts:/home/xamla/Rosvita.Control/library/robot_parts/custom xamla/rosvita:latest bash
         else
