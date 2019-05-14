@@ -32,4 +32,6 @@ The main application area for ROSVITA is the programming of adaptive behavior of
    Lua_Scripts
    Combination_with_External_ROS
    Complex_Scene
+   source/Python_In_Rosvita_Graphs
+   source/How_To_Stereo_Laser_Line_Client
 
