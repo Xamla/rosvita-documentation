@@ -94,7 +94,7 @@ Then execute the LUA scripts by typing the following commands in the ROSVITA ter
    th readPose.lua
    th simpleMovement.lua
 
-Now, the current joint angles and end effector pose are printed in the terminal. Moreover, in the **World View** (e.g. opened in a second browser), the random robot movement can be observed.
+Now, the current joint angles and end effector pose are printed in the terminal. Moreover, in the **World View** the random robot movement can be observed.
 
 .. note:: Before running the scripts, make sure that your current robot configuration has been compiled and ROS has  been started successfully (indicated by a green **GO** with check mark at the top bar of the ROSVITA environment).
 

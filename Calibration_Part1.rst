@@ -130,21 +130,25 @@ Finally, you may want to evaluate your hand-eye calibration by some error metric
 
 .. _endeffector-calibration-label:
 
-Endeffector calibration
+End effector calibration
 ------------------------
 
-.. note:: The endeffector calibration described here, is tested for the SDA10 robot. For usage with an UR5 or other robots, slight adaptions to the scripts might be necessary. Moreover, note that the endeffector calibration is the last step of the calibration pipeline. Thus before calibrating the endeffector, you first have to perform the camera calibration, hand-eye calibration and (if necessary) the robot kinematic calibration.
+.. note:: The end effector calibration described here, is tested for the SDA10 robot. For usage with an UR5 or other robots, slight adaptions to the scripts might be necessary. Moreover, note that the end effector calibration is the last step of the calibration pipeline. Thus before calibrating the end effector, you first have to perform the camera calibration, hand-eye calibration and (if necessary) the robot kinematic calibration.
 
 
-**Endeffector calibration pattern requirements:**
+**End effector calibration pattern requirements:**
 
-For the endeffector (tooltip) calibration our |Tooltip_Pattern_link| 
+For the end effector (tooltip) calibration our |Tooltip_Pattern_link| 
 (see also ``Pattern_for_tooltip_calibration.pdf`` in subfolder ``endEffectorCalibration_py`` of 
 ``/home/xamla/Rosvita.Control/lua/auto_calibration``) has to be used.
 It is recommended to print this pattern in A4 format.
 For a high-quality print of this pattern contact us (http://xamla.com).
 
-**Endeffector calibration:**
+.. figure:: images/Tooltipcalib_Pattern.png
+
+   Figure 15.1  Pattern for end effector (tooltip) calibration.
+
+**End effector calibration:**
 
 First, you have to define a good **starting pose** for the robot, such that e.g. a stereo camera setup mounted at the SDA10 torso can capture the whole calibration pattern, which is fixed onto the table (or onto a resilient plate). In particular, **all four circle patterns** must be **completely visible** in the left and right image.
 Save this starting pose of the robot to the Rosvita world view and move the robot to this posture before starting the tooltip calibration.
@@ -156,14 +160,18 @@ Now, with the Rosvita terminal go into your project folder and call the **run_to
    cd /home/xamla/Rosvita.Control/projects/<your_project_folder>
    python3 ../../lua/auto_calibration/endEffectorCalibration_py/run_tooltip_calibration.py
 
-The script will ask you to enter the filename (with path) of the stereo camera calibration (here, this is the stereo camera calibration of the SDA10 torso cameras). Next, it will ask you for the exposure time of the cameras, the robot arm with the endeffector to be calibrated, and the hand-eye for the torso cameras (i.e. the file containing the transformation between the torso joint and the torso cameras; you may simply press \'Enter\' here).
+The script will ask you to enter the filename (with path) of the stereo camera calibration (here, this is the stereo camera calibration of the SDA10 torso cameras). Next, it will ask you for the exposure time of the cameras, the robot arm with the end effector to be calibrated, and the hand-eye for the torso cameras (i.e. the file containing the transformation between the torso joint and the torso cameras; you may simply press \'Enter\' here).
 After that, you have to move the robot to the starting pose (if not already done) and again press 'Enter'.
 
 With help of the four circle patterns, which have their origin at the elongation of the cross lines, the position of the cross lines can be determined in world coordinates. The pattern poses in camera and world coordinates, as well as the resulting position of the cross lines will be written into the terminal output.
 
-Finally, you are asked to move the tooltip straight down to the cross lines. Make sure, that the tooltip points straight down, i.e. in direction of the table, and precisely touches the middle of the crosslines. Then confirm this by pressing 'Enter'. Now, the pose of the tooltip is the same as the pose of the cross lines. With help of the known flange (TCP) coordinates the tooltip pose is transformed into flange coordinates and the result is written into the terminal output and saved as ``/tmp/calibration/storage_tooltipcalib/tooltip_pose_in_flange_coordinages.npy``.
+Finally, you are asked to move the tooltip straight down to the cross lines. Make sure, that the tooltip points straight down, i.e. in direction of the table, and precisely touches the middle of the crosslines (see Fig. 15.2). Then confirm this by pressing 'Enter'. Now, the pose of the tooltip is the same as the pose of the cross lines. With help of the known flange (TCP) coordinates the tooltip pose is transformed into flange coordinates and the result is written into the terminal output and saved as ``/tmp/calibration/storage_tooltipcalib/tooltip_pose_in_flange_coordinages.npy``.
 
-To relocate the tool center point (tcp) to the end effector in Rosvita, add a **tcp_link** to the file **robotModel/main.xacro** of your project folder. As **origin xyz** of your new tcp_link choose the **translation vector of** your calculated **tcp<->end effector transformation** (i.e. of your tooltip pose in flange coordinates). Then compile the **main.xacro** and adapt your robot configuration (i.e. the **tip link** of the move group and the **parent link** of the end effector). For more details see the last  terminal output when running the script.
+.. figure:: images/Tooltipcalib.png
+
+   Figure 15.2  End effector (tooltip) calibration.
+
+To **relocate the tool center point (TCP)** from the flange position to a newly calculated end effector (tooltip) position in Rosvita, add a **tcp_link** to the file **robotModel/main.xacro** of your project folder. As **origin xyz** of your new tcp_link choose the **translation vector of** your calculated **tcp<->end effector transformation** (i.e. of your tooltip pose in flange coordinates). Then compile the **main.xacro** and adapt your robot configuration (i.e. the **tip link** of the move group and the **parent link** of the end effector). For more details see chapter :ref:`relocation-of-tcp-label` or see the last terminal output when running the script.
 
 
 

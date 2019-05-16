@@ -9,6 +9,7 @@ containts scripts for robot calibration and hand-eye optimization.
 It is written in Python and C++ and uses |Ceres_link| to optimize the robot kinematic 
 modelled by |Denavit-Hartenberg_link|.
 
+.. note:: The robot kinematic calibration described here, has been used to calibrate an SDA10 robot. For usage with an UR5 or other robots, some adaptions to the scripts will be necessary.
 
 
 **Calibration pattern requirements:**
@@ -26,7 +27,11 @@ Capturing calibration data via automatic sphere sampling
 
 Automatic sphere sampling is performed via the **auto_calibration** package of Rosvita (see :ref:`calibration-part1-label`).
 
-To use the automatic sphere sampling, you first have to define a good **starting pose** for the robot arm that will be calibrated. In the following, let us assume a stereo camera setup with the cameras mounted at the endeffector of the robot arm and looking in the direction of the z-axis of the endeffector. With this setup the calibration target has to be fixed onto the table and the robot has to be moved to a pose where the cameras look down at the target approximately straight from above and such that all target points are in the field of view (FOV) of the cameras. Save this starting pose of the robot (or better the joint values) to the Rosvita world view and move the robot to this posture before starting the sphere sampling.
+To use the automatic sphere sampling, you first have to define a good **starting pose** for the robot arm that will be calibrated. In the following, let us assume a stereo camera setup with the cameras mounted at the endeffector of the robot arm and looking in the direction of the z-axis of the endeffector. With this setup the calibration target has to be fixed onto the table and the robot has to be moved to a pose where the cameras look down at the target approximately straight from above and such that all target points are in the field of view (FOV) of the cameras (see Fig. 16.1). Save this starting pose of the robot (or better the joint values) to the Rosvita world view and move the robot to this posture before starting the sphere sampling.
+
+.. figure:: images/SphereSampling_Start.png
+
+   Figure 16.1  Starting pose for sphere sampling with left arm.
 
 Moveover, an initial guess hand-eye and stereo camera calibration is needed, which can be received e.g. by running the **auto_calibration** scripts **configureCalibration.lua** and **runCalibration.lua** (see :ref:`calibration-part1-label`). 
 

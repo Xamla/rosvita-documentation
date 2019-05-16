@@ -23,8 +23,10 @@ Once you have created all files belonging to a ROSVITA robot configuration and e
 .. note:: When creating your own robot models, make sure that these models do not become too large (do not use several GigaByte large CAD files), because working with (and especially visualizing) such huge models is naturally very slow.
 
 
-Relocation of the "Tool Center Point (TCP)":
---------------------------------------------
+.. _relocation-of-tcp-label:
+
+Relocation of the "Tool Center Point (TCP)"
+-------------------------------------------
 
 To relocate the tool center point and the corresponding interactive marker in the 3D View, a **tcp_link** must be added to the file **robotModel/main.xacro** in the corresponding project folder. 
 More precisely, you have to add the following lines inside the **<robot> </robot>** environment
