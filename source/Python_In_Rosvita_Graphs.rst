@@ -1,3 +1,5 @@
+.. _python_in_graph_label:
+
 *************************
 Python in ROSVITA Graphs
 *************************

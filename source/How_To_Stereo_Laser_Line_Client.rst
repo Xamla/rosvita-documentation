@@ -1,3 +1,5 @@
+.. _stereo_laser_line_label:
+
 ***********************************
 How to use Stereo Laser Line Client
 ***********************************
@@ -22,12 +24,12 @@ able to triangulate the laser line points. And we need a line laser which is con
 cameras.
 
 Creating a valid and precise stereo calibration is not trivial. To do so we provide a seperate
-software package which tries to make the calibration process simpler (LINK necessary!!!!!)
+software package which tries to make the calibration process simpler (see :ref:`stereo calibration <calibration-part1-label>`)
 
-The last prerequisite is that you need at least !!!This!!! Version of ROSVITA to run the
+The last prerequisite is that you need at least Build 921 of ROSVITA to run the
 StereoLaserLineClient in the form we showcase here.
 
-So to run the provided example please first create a Stereocalibration of your stereo setup and add
+So to run the provided example please first create a stereo calibration of your stereo setup and add
 the resulting t7 file to calibration. After that open the file stereo_laser_line_example.py and update all camera serial numbers, the path to the calibration file and io port of the laser.
 
 After that open the ROSVITA Configuration Window and also update the camera serials of the two GeniCam instances.
