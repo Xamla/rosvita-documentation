@@ -19,21 +19,21 @@ The main application area for ROSVITA is the programming of adaptive behavior of
    :maxdepth: 2
    :caption: User Documentation
 
-   Getting_Started
-   Main_View
-   New_Project
-   Robot_Configuration
-   Path_Planning
-   Robot_Jogging
-   File_Browser
-   Code_Editor
-   Own_Robot_Models
-   Graph_Concept
-   Lua_Scripts
-   Combination_with_External_ROS
-   Complex_Scene
+   source/Getting_Started
+   source/Main_View
+   source/New_Project
+   source/Robot_Configuration
+   source/Path_Planning
+   source/Robot_Jogging
+   source/File_Browser
+   source/Code_Editor
+   source/Own_Robot_Models
+   source/Graph_Concept
+   source/Lua_Scripts
+   source/Combination_with_External_ROS
+   source/Complex_Scene
    source/Python_In_Rosvita_Graphs
    source/How_To_Stereo_Laser_Line_Client
-   Calibration_Part1
-   Calibration_Part2
+   source/Calibration_Part1
+   source/Calibration_Part2
 
