@@ -4,33 +4,22 @@
 Getting Started
 *****************
 
-To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**) and an up-to-date internet browser (preferentially |Chrome_link|). Moreover, please read the ROSVITA |License_link|.
+To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**) and an up-to-date internet browser (preferentially |Chrome_link|). Moreover, please read the ROSVITA :ref:`license-label`.
 
-To **get ROSVITA**, simply download the shell script |get_script_link|, then change permissions to be able to execute the script 
-and finally run the script, i.e. in a terminal type:
-
-.. code-block:: bash
-
-   wget -q https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/downloads/get_rosvita
-   chmod u+x get_rosvita
-   ./get_rosvita
-
-Here, we use **wget** to download the script. If not already installed, simply install **wget** via ``sudo apt install wget``.
-
-The script will:
-
-1. Install |Docker_link| if not already installed, and add user to group docker.
-2. Download the **ROSVITA Docker image** from |Docker_Hub_link|.
-3. Download the **ROSVITA start script**: |start_script_link|.
-4. Download the **ROSVITA stop script**: |stop_script_link|.
-5. Create a **desktop icon** for starting ROSVITA.
-6. If not already in group docker, **restart the computer** to activate group changes.
-
-Now you can **start ROSVITA by double clicking the desktop icon**,
-or by opening a terminal and running the start script by simply typing:
+To **get** the **newest version of ROSVITA**, simply pull the latest ROSVITA docker image:
 
 .. code-block:: bash
 
+   docker pull xamla-buildserver:5000/devel/rosvita-basf-cuda
+
+Now you can **start ROSVITA** by using the :ref:`rosvita_start-label` script.
+More precisely, copy the content of this script into a file ``/home/<your-username>/rosvita_start``, 
+then open a terminal, change permissions to be able to execute the script and run the script:
+
+.. code-block:: bash
+
+   cd /home/<your-username/
+   sudo chmod a+x rosvita_start
    rosvita_start
 
 (To run ROSVITA in **debug mode** type ``rosvita_start --debug``. 
@@ -40,23 +29,25 @@ As a result, the ROSVITA login screen appears in your default web browser.
 After successful login with username and password (default: **admin** and **r2d2c3po**), 
 the ROSVITA main development environment opens (see :ref:`next chapter <main-view-label>`).
 
-To **stop ROSVITA** simply run the ROSVITA stop script:
+To **stop ROSVITA** simply type:
 
 .. code-block:: bash
 
+   docker stop rosvita
+
+or create and run a :ref:`rosvita_stop-label` script, i.e. copy the content of this script into a file ``/home/<your-username>/rosvita_stop``,
+change permissions and run the script:
+
+.. code-block:: bash
+
+   cd /home/<your-username/
+   sudo chmod a+x rosvita_stop
    rosvita_stop
-
-To **update ROSVITA** simply run the **get_rosvita** script again, or use the following command:
-
-.. code-block:: bash
-
-   docker pull xamla/rosvita:latest
 
 With the terminal command ``docker images`` you will see all downloaded ROSVITA versions with corresponding image ids.
 Use ``docker rmi <image-id>`` to remove old versions and save disk space.
 
-If you have any trouble or would like to give us feedback, feel free to visit our |Rosvita_forum_link|.
-Moreover, check out our |Rosvita_video_link|, especially the |QuickStart_video_link|.
+In addition to reading this documentation, also check out our |Rosvita_video_link|, especially the |QuickStart_video_link|.
 
 .. note:: We strongly recommend to run ROSVITA in **Google Chrome**, because in other internet browsers like Firefox the user experience will be limited due to the significantly slower browser performance.
 
@@ -77,7 +68,7 @@ Moreover, check out our |Rosvita_video_link|, especially the |QuickStart_video_l
 
 .. |get_script_link| raw:: html
 
-   <a href="https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/downloads/get_rosvita" target="_blank">get_rosvita</a> 
+   <a href="https://raw.githubusercontent.com/Xamla/docs.xamla.com/master/rosvita/downloads/get_rosvita?token=ADKZO3UFCOADAVPFTNUQIYC45O6A2" target="_blank">get_rosvita</a> 
 
 .. |start_script_link| raw:: html
 
@@ -105,5 +96,5 @@ Moreover, check out our |Rosvita_video_link|, especially the |QuickStart_video_l
 
 .. |License_link| raw:: html
 
-   <a href="https://raw.githubusercontent.com/Xamla/docs.xamla.com/gh-pages/rosvita/downloads/LICENSE" target="_blank">license agreement</a>
+   <a href="https://github.com/Xamla/docs.xamla.com/blob/master/rosvita/downloads/LICENSE" target="_blank">license agreement</a>
 
