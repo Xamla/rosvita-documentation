@@ -12,8 +12,8 @@ a sidebar for selecting robot parts, actuators, sensors, or other ROS components
 Under the menu item **Robot Parts** of this sidebar one chooses e.g. the **UR5** from Universal Robots (i.e. the corresponding URDF and 3D model). 
 By clicking on the **Add to Project** button, the corresponding robot part is added to the current configuration.
 Under the menu item **Actuator** choose the corresponding actuator (here: **Robot Arm UR**).
-The menu bar on the left of the **Configuration** view lists the individual components of the current configuration. 
-If within this menu bar you click on the previously added robot part **UR5**, 
+The menu bar on the left of the **Configuration** view lists the individual components of the current configuration.
+After pressing the **Compile** button at the top bar (see below for a more detailed explanation), your can click on the previously added robot part **UR5** within the the left menu bar and 
 the 3D model of this robot arm including all coordinate systems of the individual joints is displayed in the 3D view. 
 Continuously pressing the left mouse button within the 3D view allows rotation, sustained press of the right mouse button allows moving the scene, and scrolling the mouse wheel will zoom in or out of the 3D scene.
 
@@ -70,6 +70,6 @@ clicking on this warning opens the overview of the system status, i.e. of all pr
 Moreover, hovering above this warning shows the status (**GO** or **NOGO**) of all nodes. This individual node status can also be seen when looking at the heartbeat output in the bottom pane.  
 By clicking on the **Restart** button in the top bar, which now replaces the **Start ROS** button, ROS will be restarted. 
 If that does not resolve the warning message, you can also restart individual crashed processes in the 
-**Managed Process List** by clicking the **Start** button next to the corresponding process. 
-In addition, the outputs and error messages of all started processes can be viewed in detail in the current system status (**Monitoring**) view. Often, also the **Logs** output pane gives helpful indications of failure causes.
+**Managed Processes** list by clicking the (re)start icon next to the corresponding process. 
+In addition, the outputs and error messages of a started/crashed process can be viewed in detail by setting the corresponding **Output** field next to the process to **On**. Often, also the **Logs** output pane gives helpful indications of failure causes.
 

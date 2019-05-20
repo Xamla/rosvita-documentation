@@ -61,7 +61,7 @@ If two **identical robot arms** shall be added to the scene (e.g. **two UR5 robo
 Configuring a real robot:
 --------------------------
 
-To configure a real robot, in the **Actuator**'s **Properties** list the **Simulate** checkmark has to be removed and instead, the  IP address of the robot has to be entered (see Fig. 12.6). 
+To configure a real robot, in the **Actuator**'s **Properties** list the **Simulate** flag has to be set to **Off** and the  IP address of the robot has to be entered (see Fig. 12.6). 
 
 .. figure:: ../images/Real_Robot.png
 
@@ -69,5 +69,5 @@ To configure a real robot, in the **Actuator**'s **Properties** list the **Simul
 
 .. note:: All USB devices (e.g. cameras) have to be plugged in before starting ROSVITA.
 
-... to be continued
+After pressing **Compile** and **Start ROS**, go into the Rosvita World View. If you have a Motoman SDA10 robot configuration, with the corresponding teach pendant go into **remote state**. Then choose your robot in the folder **Plugins** on the left of the Rosvita World View. In the corresponding **Properties** pane at the right sidebar click at the **Enable Robot** button and your robot will be ready to move. All other features like path planning and robot jogging are the same as in the simulation mode.
 
