@@ -6,7 +6,8 @@
 LICENSE
 *************
 
-Rosvita™ “BETA” Robotic Software  
+Rosvita™ “BETA” Robotic Software
+
 Software License Agreement as of 07/2018
 
 END USER LICENSE AGREEMENT “EULA”
@@ -248,17 +249,17 @@ effect.
 9. CONTACT INFORMATION
 
 If you have any questions about this Rosvita (BETA) Software Test Agreement, or 
-if you want to contact the Company for any reason, please direct all mail 
+if you want to contact the Company for any reason, please direct all mail
 correspondence to:
 
 http://www.xam.la/
 
-PROVISIO GmbH 
-c/o xamla robotic solutions 
-Wilhelm-Schickard-Str. 1 
-48149 Muenster
-Germany
+| PROVISIO GmbH
+| c/o xamla robotic solutions
+| Wilhelm-Schickard-Str. 1
+| 48149 Muenster
+| Germany
 
-Telephone: +49 (251) 846924-40 
-Fax: +49 (251) 846924-10 
-E-Mail: contact@xamla.com
+| Telephone: +49 (251) 846924-40 
+| Fax: +49 (251) 846924-10 
+| E-Mail: contact@xamla.com

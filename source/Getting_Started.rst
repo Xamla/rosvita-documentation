@@ -4,13 +4,33 @@
 Getting Started
 *****************
 
-To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**) and an up-to-date internet browser (preferentially |Chrome_link|). Moreover, please read the ROSVITA :ref:`license-label`.
+To use ROSVITA, no complex installation process is necessary, because the ROSVITA Docker image already contains all the necessary packages and dependencies. All you need is an up-to-date |Ubuntu_link| operating system (preferentially **Ubuntu 16.04 or higher**), an up-to-date **NVIDIA graphics card driver**, as well as **Docker** and **NVIDIA-Docker 2.0**. Moreover, you should have an up-to-date internet browser (preferentially |Chrome_link|). 
+Also, please read the ROSVITA :ref:`license-label`.
 
-To **get** the **newest version of ROSVITA**, simply pull the latest ROSVITA docker image:
+To install the latest **NVIDIA driver** you have to add the following package repository:
 
 .. code-block:: bash
 
-   docker pull xamla-buildserver:5000/devel/rosvita-basf-cuda
+   sudo add-apt-repository ppa:graphics-drivers/ppa
+   sudo apt-get update
+
+Then on your Ubuntu system open **Software & Updates**, click on the **Additional Drivers** tab, select the latest NVIDIA driver and click the button **Apply Changes**. After the driver is downloaded and installed, restart your system.
+
+To install **Docker** and **NVIDIA-Docker 2.0** copy the content of the :ref:`get_docker-label` script
+into a file ``/home/<your-username>/get_docker``, then open a terminal, change permissions to be able to
+execute the script and run the script:
+
+.. code-block:: bash
+
+   cd /home/<your-username/
+   sudo chmod a+x get_docker
+   get_docker
+
+After having copied the latest **ROSVITA docker image** (e.g. rosvita-basf-cuda-v0.8.tgz) onto your computer, you can import it by the following command:
+
+.. code-block:: bash
+
+   cat rosvita-basf-cuda-v0.8.tgz | docker import - rosvita-basf-cuda:latest
 
 Now you can **start ROSVITA** by using the :ref:`rosvita_start-label` script.
 More precisely, copy the content of this script into a file ``/home/<your-username>/rosvita_start``, 

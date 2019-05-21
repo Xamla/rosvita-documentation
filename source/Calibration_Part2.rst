@@ -14,9 +14,9 @@ modelled by |Denavit-Hartenberg_link|.
 
 **Calibration pattern requirements:**
 
-For all robot kinematic and hand-eye calibrations one of our |Circle_Pattern_link|
-(see also ``/home/xamla/Rosvita.Control/lua/auto_calibration/Patterns_with_ID.pdf``) has to be used.
-For a high-quality print of one of these patterns contact us (http://xamla.com).
+For all camera and hand-eye calibrations one of our circle patterns with IDs
+(``/home/xamla/Rosvita.Control/lua/auto_calibration/Patterns_with_ID.pdf``) has to be used.
+See :ref:`calibration-patterns-label`
 
 
 
@@ -41,6 +41,8 @@ Now, to start the sphere sampling, with the Rosvita terminal go into your projec
 
    cd /home/xamla/Rosvita.Control/projects/<your_project_folder>
    th ../../lua/auto_calibration/configureCalibration.lua -cfg <name_of_your_configuration_file>.t7
+
+Here, the configuration file is the one you created before to get an initial hand-eye and stereo camera calibration (see previous chapter).
 
 Then press
 

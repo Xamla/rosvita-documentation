@@ -18,10 +18,14 @@ It is almost completely written in LUA, except for the current endeffector calib
 
 **Calibration pattern requirements:**
 
-For all camera and hand-eye calibrations one of our |Circle_Pattern_link| 
-(see also ``/home/xamla/Rosvita.Control/lua/auto_calibration/Patterns_with_ID.pdf``) has to be used.
+For all camera and hand-eye calibrations one of our circle patterns with IDs (see
+``/home/xamla/Rosvita.Control/lua/auto_calibration/Patterns_with_ID.pdf`` and Fig. 15.1) has to be used.
 For a high-quality print of one of these patterns contact us (http://xamla.com).
 
+.. _calibration-patterns-label:
+.. figure:: ../images/Calibration_Patterns.png
+
+   Figure 15.1  Circle patterns with IDs for calibration.
 
 
 .. _camera-calibration-label:
@@ -44,8 +48,9 @@ In more detail, the **calibration pipeline** is as follows:
 * -> The **configuration main menu** will appear in the terminal.
 
    * Now you can select the calibration mode (single or stereo camera setup), the robot move group, the camera type, the circle pattern id and geometry, etc. ...  
-   * Moreover, you can teach base poses, capture poses and optionally evaluation poses for the calibration. 
-   * **Hint**: Base Poses are mainly used for picking a calibration target. If you don't want to pick a calibration target, only teach a start pose and successively press return afterwards for the remaining base poses.
+   * Moreover, you can **teach** base **poses**, capture poses and optionally evaluation poses for the calibration. 
+   * **Hint**: **Base Poses** are mainly used for picking a calibration target. If you don't want to pick a calibration target, only teach a start pose and successively press return afterwards for the remaining base poses.
+   * **Capture Poses** are used for camera and hand-eye calibration. They have to be defined, such that the pattern is seen completely by all involved cameras (e.g. by both cameras of a stereo setup) and they have to vary in position and angle, such that the pattern is captured in many different views.
    * Don't forget to **save** the configuration by **pressing the 's' button**.
 
 * Next run the calibration script from your project folder and with the previously saved configuration: 
@@ -58,10 +63,12 @@ In more detail, the **calibration pipeline** is as follows:
 
    * Now, simply press:
 
+      * h (Move to start pose)
       * f (Full calibraton cycle)  
 
    * or press the following sequence:
 
+      * h (Move to start pose)
       * c (Capture calibration images)
       * a (Calibrate camera)
       * s (Save calibration)
@@ -69,6 +76,8 @@ In more detail, the **calibration pipeline** is as follows:
       * e (Evaluate calibration) (optionally)
 
 * The order of this sequence is important, in particular don't forget to save the camera calibration by pressing 's' before starting the hand-eye calibration.
+
+.. note:: Note, that during the capturing process **linear movements** are performed between the taught capture poses. In particular, there is **no collision check**. Thus, it is highly recommended to **first move to the starting pose**, which is a comparatively slow movement, and to **watch** the whole **capturing process carefully**.
 
 .. note:: The output directory for your calibration data (image capturing and calibration results) will be ``/tmp/calibration/<date>_<time>/``. Thus, your calibration data will be saved only temporarily. To permanently save calibration results, move them into your project folder!
 
@@ -79,9 +88,9 @@ In more detail, the **calibration pipeline** is as follows:
 Hand-eye calibration
 ---------------------
 
-In case of an **onboard camera setup**, the hand-eye calibration detects the transformation (rotation and translation) between the tool center point (tcp) of the robot and a previously calibrated camera system mounted on the robot.
+In case of an **onboard camera setup**, the hand-eye calibration detects the transformation (rotation and translation) between the tool center point (TCP) of the robot and a previously calibrated camera system mounted on the robot.
 
-In case of an **extern camera setup**, the calibration pattern has to be mounted on the robot (e.g. grasped by the gripper) and the hand-eye calibration detects the transformation between the tcp and the pattern.
+In case of an **extern camera setup**, the calibration pattern has to be mounted on the robot (e.g. grasped by the gripper) and the hand-eye calibration detects the transformation between the TCP and the pattern.
 
 To be able to perform hand-eye calibration, the camera calibration has to be performed and saved first (see above).
 To run the hand-eye calibration, type the following commands into the Rosvita terminal:
@@ -106,7 +115,7 @@ Moveover you have to choose if you want to use **RANSAC outlier removal**:
 
 In particular with large datasets (e.g. obtained via sphere sampling) it is highly recommended to use option 1 (with RANSAC outlier removal), because outlier removal considerably stabilizes the underlying hand-eye calibration algorithm, which is the closed-form solution proposed by |Tsai_Lenz_link|.
 
-Finally, you may want to evaluate your hand-eye calibration by some error metrics to be able to compare it with alternative hand-eye calibrations. Thereto, first you have to teach some tcp poses for evaluation (such that the cameras can capture the pattern from different angles and positions):
+Finally, you may want to evaluate your hand-eye calibration by some error metrics to be able to compare it with alternative hand-eye calibrations. Thereto, first you have to teach some TCP poses for evaluation (such that the cameras can capture the pattern from different angles and positions):
 
 .. code-block:: bash
 
@@ -138,15 +147,15 @@ End effector calibration
 
 **End effector calibration pattern requirements:**
 
-For the end effector (tooltip) calibration our |Tooltip_Pattern_link| 
-(see also ``Pattern_for_tooltip_calibration.pdf`` in subfolder ``endEffectorCalibration_py`` of 
-``/home/xamla/Rosvita.Control/lua/auto_calibration``) has to be used.
+For the end effector (tooltip) calibration our pattern arrangement with crosslines
+(see ``Pattern_for_tooltip_calibration.pdf`` in subfolder ``endEffectorCalibration_py`` of 
+``/home/xamla/Rosvita.Control/lua/auto_calibration`` and Fig. 15.2) has to be used.
 It is recommended to print this pattern in A4 format.
 For a high-quality print of this pattern contact us (http://xamla.com).
 
 .. figure:: ../images/Tooltipcalib_Pattern.png
 
-   Figure 15.1  Pattern for end effector (tooltip) calibration.
+   Figure 15.2  Pattern for end effector (tooltip) calibration.
 
 **End effector calibration:**
 
@@ -165,11 +174,11 @@ After that, you have to move the robot to the starting pose (if not already done
 
 With help of the four circle patterns, which have their origin at the elongation of the cross lines, the position of the cross lines can be determined in world coordinates. The pattern poses in camera and world coordinates, as well as the resulting position of the cross lines will be written into the terminal output.
 
-Finally, you are asked to move the tooltip straight down to the cross lines. Make sure, that the tooltip points straight down, i.e. in direction of the table, and precisely touches the middle of the crosslines (see Fig. 15.2). Then confirm this by pressing 'Enter'. Now, the pose of the tooltip is the same as the pose of the cross lines. With help of the known flange (TCP) coordinates the tooltip pose is transformed into flange coordinates and the result is written into the terminal output and saved as ``/tmp/calibration/storage_tooltipcalib/tooltip_pose_in_flange_coordinages.npy``.
+Finally, you are asked to move the tooltip straight down to the cross lines. Make sure, that the tooltip points straight down, i.e. in direction of the table, and precisely touches the middle of the crosslines (see Fig. 15.3). Then confirm this by pressing 'Enter'. Now, the pose of the tooltip is the same as the pose of the cross lines. With help of the known flange (TCP) coordinates the tooltip pose is transformed into flange coordinates and the result is written into the terminal output and saved as ``/tmp/calibration/storage_tooltipcalib/tooltip_pose_in_flange_coordinages.npy``.
 
 .. figure:: ../images/Tooltipcalib.png
 
-   Figure 15.2  End effector (tooltip) calibration.
+   Figure 15.3  End effector (tooltip) calibration.
 
 To **relocate the tool center point (TCP)** from the flange position to a newly calculated end effector (tooltip) position in Rosvita, add a **tcp_link** to the file **robotModel/main.xacro** of your project folder. As **origin xyz** of your new tcp_link choose the **translation vector of** your calculated **tcp<->end effector transformation** (i.e. of your tooltip pose in flange coordinates). Then compile the **main.xacro** and adapt your robot configuration (i.e. the **tip link** of the move group and the **parent link** of the end effector). For more details see chapter :ref:`relocation-of-tcp-label` or see the last terminal output when running the script.
 
