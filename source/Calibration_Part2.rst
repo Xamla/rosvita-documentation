@@ -160,7 +160,15 @@ The **first variant** uses an average of the 3d circle pattern as initial guess.
 
 The **second variant (v2)** calculates the reprojection error by comparing each circle pattern point with each other circle pattern point at the same position in the pattern for all ~200 images. Pattern points are in 3d and transformed into base coordinates with help of the current hand-eye and robot kinematic. This second variant should be **more precise**, but also takes **more time**.
 
-As result, the program writes the optimized robot model and hand-eye into .npy files. Moreover, an urdf with the optimized values is written into calibration_result.urdf. Copy this urdf into your current project then close and reopen your project to apply the optimized values of the new urdf. Moreover, publish the optimized hand-eye into the world view or simply overwrite the corresponding values of an already published hand-eye.
+As result, the program writes the optimized robot model and hand-eye into .npy files. Moreover, an urdf with the optimized values is written into **calibration_result.urdf**. **Copy** this **urdf into your current project** then close and **reopen** your **project** to apply the optimized values of the new urdf. Moreover, **publish** the **optimized hand-eye** into the Rosvita World View, i.e. with the Rosvita terminal go into your project folder and run the following **publish_hand_eye.py** script:
+
+.. code-block:: bash
+
+   cd /home/xamla/Rosvita.Control/projects/<your_project_folder>
+   python3 /home/xamla/git/egomo_calibration/examples/publish_hand_eye.py
+
+You will have to enter the name (with path) of the optimized hand-eye and to choose the corresponding robot arm.
+As a result, the optimized hand-eye will be published into the Rosvita World View folder "Calibration" (create this folder previously, if not already existing).
 
 
 
