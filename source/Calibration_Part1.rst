@@ -183,6 +183,52 @@ Finally, you are asked to move the tooltip straight down to the cross lines. Mak
 To **relocate the tool center point (TCP)** from the flange position to a newly calculated end effector (tooltip) position in Rosvita, add a **tcp_link** to the file **robotModel/main.xacro** of your project folder. As **origin xyz** of your new tcp_link choose the **translation vector of** your calculated **tcp<->end effector transformation** (i.e. of your tooltip pose in flange coordinates). Then compile the **main.xacro** and adapt your robot configuration (i.e. the **tip link** of the move group and the **parent link** of the end effector). For more details see chapter :ref:`relocation-of-tcp-label` or see the last terminal output when running the script.
 
 
+**Alternative Lua scripts for endeffector calibration:**
+
+Some alternative scripts for end effector (tooltip) calibration still exist in subfolder
+**endEffectorCalibration** of folder **auto_calibration**.
+These scripts are older solutions to the end effector calibration problem and are probably not as
+good as the solution described above. However, for the sake of completeness these solutions
+shall be listed here:
+
+1. endEffectorCalibration.lua
+
+   Call from project root:
+   ``th ../../lua/auto_calibration/endEffectorCalibration/endEffectorCalibration.lua``
+
+   Description:
+   With the tooltip (e.g. the gripper tip) move to a fixed point (i.e. a needle tip) from at least four different angles.
+   Then this fixed point represents the center of a sphere and the robot flange, i.e. the current tool center point (TCP),
+   lies on the sphere surface at the end of each movement. With help of the sphere center and the >=4 points at the
+   sphere surface, the sphere or more precisley, the sphere radius can be determined. The sphere radius is the distance
+   between the flange and the tooltip and thus can be used to relocate the tcp.
+
+2. endEffectorCalibration_stereo.lua
+
+   Call from project root:
+   ``th ../../lua/auto_calibration/endEffectorCalibration/endEffectorCalibration_stereo.lua``
+
+   Description:
+   With the calibrated torso cameras capture an image of the gripper tip (ximea_left.png and ximea_right.png).
+   Save all relevant poses (flange pose, torso joint pose, ...) in world coordinates.
+   Then run the script and click at the gripper tip in both captured images. With help of the stereo camera
+   calibration the 3d click point position will be calculated from the 2d pixel positions via triangulation.
+   Moreover, the 3d click point position will be transformed into world coordinates, such that the distance
+   between flange and gripper tip can be calculated.
+
+3. endEffectorCalibration_pointCloud.lua
+
+   Call from project root:
+   ``th ../../lua/auto_calibration/endEffectorCalibration/endEffectorCalibration_pointCloud.lua``
+
+   Description:
+   This approach works very similar to the second approach, but with the difference, that the user has to click
+   into a previously captured point cloud. Thus, we already get a 3d point, which then simply has to be transformed
+   into world coordinates to get the distance between gripper tip and flange.
+   Unfortunatly, the point cloud visualization results in a libGL error when running in Rosvita, i.e. you will have
+   to run this script from outside Rosvita.
+
+
 
 
 .. |Circle_Pattern_link| raw:: html
