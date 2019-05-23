@@ -170,6 +170,14 @@ As result, the program writes the optimized robot model and hand-eye into .npy f
 You will have to enter the name (with path) of the optimized hand-eye and to choose the corresponding robot arm.
 As a result, the optimized hand-eye will be published into the Rosvita World View folder "Calibration" (create this folder previously, if not already existing).
 
+.. note:: If you use the first variant together with an alternating optimization of DH-parameters and hand-eye,
+          you should not choose more than 4 runs, because the precision of the first variant seems to be limited and
+          for more than 4 runs, the optimization process probably will diverge.
+
+.. note:: If you use the second variant (v2) with torso joint optimization, the result for the optimal torso joint "theta[0]" is to be regarded with scepticism.
+          In contrast to all other optimized angles and lengths, which show reasonably small optimal changes,
+          the optimal torso joint offset often seems to be quite large.
+
 
 
 

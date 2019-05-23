@@ -12,7 +12,7 @@ It is almost completely written in LUA, except for the current endeffector calib
 **Major features are:**
 
 1. :ref:`camera-calibration-label` (single and stereo setup) including data acquisition
-2. :ref:`hand-eye-calibration-label` Hand-Eye calibration (including evaluation)
+2. :ref:`hand-eye-calibration-label` (including evaluation)
 3. :ref:`endeffector-calibration-label`
 
 
