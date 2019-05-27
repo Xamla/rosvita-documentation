@@ -4,6 +4,8 @@
 How to use Stereo Laser Line Client
 ***********************************
 
+.. hint:: To make this tutorial an interactive one please download the examples: **"your ROSVITA url"/examples/stereo_laser_line_examples.tar**. After that, untar it in your ROSVITA projects folder and open the project in ROSVITA. All graphs and python files which are named in this tutorial can be found in this project.
+
 In this tutorial we explain how to use the StereoLaserLineClient and even more important
 point to the prerequisites to be able to use it.
 

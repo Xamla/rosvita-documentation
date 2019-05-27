@@ -4,6 +4,8 @@
 Python in ROSVITA Graphs
 *************************
 
+.. hint:: To make this tutorial an interactive one please download the examples: **"your ROSVITA url"/examples/python_in_rosvita_graph_examples.tar**. After that, untar it in your ROSVITA projects folder and open the project in ROSVITA. All graphs and python files which are named in this tutorial can be found in this project.
+
 In this tutorial we try to explain some inner workings of python and the ROSVITA Graph
 itself to motivate some patterns how to use python and rospy in ROSVITA Graphs.
 
@@ -77,7 +79,7 @@ If you add a PythonScriptFile to the Graph via drag and drop the path is already
 
 Perhaps the Module is still highlighted in red. As mentioned a reason for that could be that the function which should be called is not correctly defined to use it in a ROSVITA Graph Python Module even if it is syntactically correct python code.
 
-The solution is to add `type hints <https://docs.python.org/3/library/typing.html>`_ to the python function which should be called by the ROSVITA Graph Module. Why is perhaps now the
+The solution is to add `type hints <https://docs.python.org/3/library/typing.html>`_ to the python function which should be called by the ROSVITA Graph Module. Why, is perhaps now the
 your question. The answer is, because the ROSVITA Graph Runtime needs to know how to convert
 the python types into the inner ROSVITA Graph types. The problem is that python is a dynamic language and every variable could be any type. Therefore, we must help the ROSVITA Graph runtime with the type hints. Thus, please provided full type hints for all inputs and outputs
 of the python function which should be called. As an example please take a look into the already known file showcase_graph_instance_and_python_object.py.
