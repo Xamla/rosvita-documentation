@@ -3,8 +3,8 @@ Force Torque Data
 *****************
 
 For collecting force torque data in XGraph workflows Rosvita comes with the so called ForceTorqueToolbox. The toolbox
- consists of a ROS node responsible for collecting data from a force torque sensor, as well as a set of graph modules for
- retrieving the data from the collecting node.
+consists of a ROS node responsible for collecting data from a force torque sensor, as well as a set of graph modules for
+retrieving the data from the collecting node.
 
 Configuration
 ---------------
@@ -49,6 +49,7 @@ Example of retrieving force torque data within a workflow:
 
 The BeginDataCollection module lets the collection node begin with recording force torque sensor data. It has the
 following properties:
+
 * Frequency: in Hz of the capturing process. If > 0, reads maximum of one datapoint every timeslot defined by frequency and discards further datapoints in the same timeslot. If < 0, passes all datapoints through.
 * Reference Frame: The target reference frame. Both this frame and the frame in the header of the incoming WrenchStamped-datapoints need to exist.
 * Timeout: The maximum time duration the node should capture data. Captures indefinitely when duration is 0.
