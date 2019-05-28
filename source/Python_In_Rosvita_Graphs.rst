@@ -4,7 +4,7 @@
 Python in ROSVITA Graphs
 *************************
 
-.. hint:: To make this tutorial an interactive one please download the examples: **"your ROSVITA url"/examples/python_in_rosvita_graph_examples.tar**. After that, untar it in your ROSVITA projects folder and open the project in ROSVITA. All graphs and python files which are named in this tutorial can be found in this project.
+.. hint:: To make this tutorial an interactive one please download the examples: `Link </examples/python_in_rosvita_graph_tutorial.tar>`_. After that, untar it in your ROSVITA projects folder and open the project in ROSVITA. All graphs and python files which are named in this tutorial can be found in this project.
 
 In this tutorial we try to explain some inner workings of python and the ROSVITA Graph
 itself to motivate some patterns how to use python and rospy in ROSVITA Graphs.
