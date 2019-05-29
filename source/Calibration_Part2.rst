@@ -25,7 +25,7 @@ See :ref:`calibration-patterns-label`
 Capturing calibration data via automatic sphere sampling
 --------------------------------------------------------
 
-Automatic sphere sampling is performed via the **auto_calibration** package of Rosvita (see :ref:`calibration-part1-label`).
+Automatic sphere sampling is performed via the **auto_calibration** package of Rosvita (see :ref:`Calibration Part1 <calibration-part1-label>`).
 
 To use the automatic sphere sampling, you first have to define a good **starting pose** for the robot arm that will be calibrated. In the following, let us assume a stereo camera setup with the cameras mounted at the endeffector of the robot arm and looking in the direction of the z-axis of the endeffector. With this setup the calibration target has to be fixed onto the table and the robot has to be moved to a pose where the cameras look down at the target approximately straight from above and such that all target points are in the field of view (FOV) of the cameras (see Fig. 16.1). Save this starting pose of the robot (or better the joint values) to the Rosvita world view and move the robot to this posture before starting the sphere sampling.
 
@@ -33,14 +33,14 @@ To use the automatic sphere sampling, you first have to define a good **starting
 
    Figure 16.1  Starting pose for sphere sampling with left arm.
 
-Moveover, an initial guess hand-eye and stereo camera calibration is needed, which can be received e.g. by running the **auto_calibration** scripts **configureCalibration.lua** and **runCalibration.lua** (see :ref:`calibration-part1-label`). 
+Moveover, an initial guess hand-eye and stereo camera calibration is needed, which can be received e.g. by running the **auto_calibration** scripts **configureCalibration.lua** and **runCalibration.lua** (see :ref:`Calibration Part1 <calibration-part1-label>`). 
 
-Now, to start the sphere sampling, with the Rosvita terminal go into your project folder and run the configuration script from the **auto_calibration** package:
+Now, to start the sphere sampling, with the Rosvita terminal go into your project folder and run the calibration script from the **auto_calibration** package:
 
 .. code-block:: bash
 
    cd /home/xamla/Rosvita.Control/projects/<your_project_folder>
-   th ../../lua/auto_calibration/configureCalibration.lua -cfg <name_of_your_configuration_file>.t7
+   th ../../lua/auto_calibration/runCalibration.lua -cfg <name_of_your_configuration_file>.t7
 
 Here, the configuration file is the one you created before to get an initial hand-eye and stereo camera calibration (see previous chapter).
 
@@ -48,7 +48,7 @@ Then press
 
 .. code-block:: bash
 
-   a (Generate capture poses via sphere sampling)
+   d (Capture sphere sampling)
 
 You'll have to choose the camera setup. Currently, two possibilities are implemented:
 
@@ -64,9 +64,13 @@ In order to obtain good calibration results, you should choose a rather large nu
 
 Next you have to enter the paths to the previously generated intial guesses for the hand-eye calibration and stereo camera calibration (e.g. ``<path-to-your-project-folder>/calibration/<date>_<time>/HandEye.t7`` and ``<path-to-your-project-folder>/calibration/<date>_<time>/stereo_cams_<serial1>_<serial2>.t7``). Then after accepting the **identified target point** by pressing **enter** the sphere sampling will begin, i.e. the robot will start moving and recording images and poses.
 
-.. note:: Make sure, that all **collision objects** in your robot's work space are **modeled carefully** (with safety margin), before starting the sphere sampling. The **robot will move relatively fast** using MoveIt! and collision check. However, collisions can only be avoided for correctly modeled collision objects.
+.. note:: In rare cases it may happen that the **identified target point** contains unrealistic large values. In such cases, the planner will not find a valid joint configuration, which will result in an endless loop with "nan" outputs. If you notice such a case, simply interrupt the current capturing process by pressing ``Ctrl+c``, restart the calibration script and repeat the steps from before.
+
+.. warning:: Make sure, that all **collision objects** in your robot's work space are **modeled carefully** (with safety margin), before starting the sphere sampling. The **robot will move relatively fast** using MoveIt! and collision check. However, collisions can only be avoided for correctly modeled collision objects.
 
 
+
+.. _further-preparation-label:
 
 Further preparation of the calibration input data
 --------------------------------------------------
@@ -89,7 +93,7 @@ This folder contains the following files:
 
 **Improvement of stereo camera and hand-eye input data**
 
-Now, with the 200 sampled images and robot poses, you first should determine an improved stereo calibration, as well as an improved initial hand-eye matrix. Thereto, simply copy the captured images into a folder ``/tmp/calibration/capture/`` and run the camera and hand-eye calibration of the package **auto_calibration** (see :ref:`calibration-part1-label`):
+Now, with the 200 sampled images and robot poses, you first should determine an improved stereo calibration, as well as an improved initial hand-eye matrix. Thereto, simply copy the captured images into a folder ``/tmp/calibration/capture/`` and run the camera and hand-eye calibration of the package **auto_calibration** (see :ref:`Calibration Part1 <calibration-part1-label>`):
 
 .. code-block:: bash
 
