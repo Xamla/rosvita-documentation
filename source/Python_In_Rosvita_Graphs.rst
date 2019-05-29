@@ -59,9 +59,9 @@ Run File:
       return 'my_class_instance object memory adress {}'.format(id(my_class_instance))
 
 With help of this property you can create objects which lives longer then a single run of the ROSVITA Graph and also can be shared between multiple python modules in a ROSVITA Graph.
-Python objects which are made availble in this manner lives as long as the python runtime instance lives. In context of a ROSVITA Graph this means as long as the Graph is open and not distroyed with help of the trash bin button this kind of objects are available.
+Python objects which are made available in this manner lives as long as the python runtime instance lives. In context of a ROSVITA Graph this means as long as the Graph is open and not distroyed with help of the trash bin button this kind of objects are available.
 
-But wait, many software developer will argument that this kind of using python modules to solve our problem of sharing objects is not a very clean approach and that is correct. Therefore, to do it in a more sophisticated and cleaner why please use the `borg pattern <https://www.oreilly.com/library/view/python-cookbook/0596001673/ch05s23.html>`_.
+But wait, many software developer will argue that this kind of using python modules to solve our problem of sharing objects is not a very clean approach and that is correct. Therefore, to do it in a more sophisticated and cleaner why please use the `borg pattern <https://www.oreilly.com/library/view/python-cookbook/0596001673/ch05s23.html>`_.
 
 As an example we provide the files showcase_graph_instance_and_python_object.py the library
 example_lib.py (lib/python/) and the Graph showcase_graph_instance_and_python_object.xgraph
@@ -116,3 +116,24 @@ For this purpose use the following python snipped in your implementations:
 
 For a running example please take a look into the showcase_rospy_in_rosvita_graph.py
 and run the graph showcase_rospy_in_rosvita_graph.xgraph
+
+ROS packages and usage in ROSVITA Graphs via Python
+----------------------------------------------------------
+
+Every ROSVITA project has it own already initialized `catkin <http://wiki.ros.org/catkin/workspaces>`_.
+This workspace is the place where all project specific ROS packages should be places which are not
+already available by the ROS installation which is the backbone of ROSVITA.
+
+To perform actions in the project catkin workspace please use `catkin_tools <https://catkin-tools.readthedocs.io/en/latest/index.html>`_
+which are already installed and can be used from terminal when you browse to the project catkin workspace.
+
+After building the catkin workspace with help of the command **catkin build** the package content should be ready to use in ROSVITA Graphs.
+If you want access to those packages from the terminal please first source the catkin workspace (source devel/setup.bash --extend in catkin workspace).
+
+.. hint:: If you get erros which claim that a ROS package is not available e.g. a ROS message of a package, please consider first to clean the catkin workspace with the command **catkin clean** and then rebuild the catkin workspace. Reopen Graphs or resource the catkin workspace in terminals where this kind of error were stated. 
+
+Also please take in mind that a ROSVITA Graph is not a good place for long running or always on task. In practise this means that e.g. subscribing to a ROS topic and handle these messages for 
+a long time is not a good graph application. The idea is that heavy and long running computations are implemented in ROS packages and you can access and collect the results via ROS services or
+ROS actions. 
+
+To start your custom ROS packages every ROSVITA project provides a custom launch file. An introduction on how to use custom launch files can be found :doc:`here <ROSVITA_and_roslaunch>`. 
