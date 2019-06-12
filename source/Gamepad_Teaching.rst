@@ -16,7 +16,7 @@ To use the mobile interface the following components are needed:
 
 For Tablets we recommend a Windows Surface with the an i7 CPU. For Smartphones any recent upper-middleclass 6 inch Android
 device can be used. When a Smartphone is used we recommend a Gamepad that can hold the Smartphone, so that it is not required
-to carry around two devices. The `Raiju Mobile <https://www.razer.com/gaming-controllers/razer-raiju-mobile>` Gamepad has
+to carry around two devices. The `"Raiju Mobile" <https://www.razer.com/gaming-controllers/razer-raiju-mobile>`_ Gamepad has
 been used during development and has proven itself as a solid Gamepad.
 
 Getting Started
