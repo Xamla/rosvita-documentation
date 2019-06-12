@@ -39,4 +39,5 @@ The main application area for ROSVITA is the programming of adaptive behavior of
    source/Calibration_Part1
    source/Calibration_Part2
    source/Force_Torque_Data
+   source/Gamepad_Teaching
 
